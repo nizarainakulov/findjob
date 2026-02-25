@@ -8,6 +8,11 @@
     <meta name="description"
         content="FindJob: платформа для студентов. Найди работу не по фильтрам, а по шансам. AI-оценка профиля, вакансии с % совпадения." />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -34,6 +39,13 @@
                         <div class="welcome-opt-sub" data-t="demoAccountSub">Демо-профиль с готовыми данными</div>
                     </div>
                 </div>
+                <div class="welcome-option" onclick="startDemoEmployer()">
+                    <div class="welcome-opt-icon employer-icon">🏢</div>
+                    <div>
+                        <div class="welcome-opt-title" data-t="demoEmployer">Войти как работодатель</div>
+                        <div class="welcome-opt-sub" data-t="demoEmployerSub">Кабинет HR для размещения вакансий</div>
+                    </div>
+                </div>
             </div>
             <div style="margin-top:20px">
                 <div class="lang-toggle" style="display:inline-flex">
@@ -46,42 +58,11 @@
 
     <div class="app-shell">
 
-        <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
-        <aside class="sidebar">
-            <div class="sidebar-logo">
-                <div class="logo-mark">⚡ FindJob</div>
-                <div class="logo-sub" data-t="heroTag">🚀 AI-поиск нового поколения</div>
-            </div>
-            <nav class="sidebar-nav">
-                <div class="nav-group-label" data-t="students">Студентам</div>
-                <div class="nav-item active" data-page="home"><span class="nav-icon">🏠</span><span
-                        data-t="home">Главная</span></div>
-                <div class="nav-item" data-page="resume"><span class="nav-icon">📄</span><span
-                        data-t="resume">Резюме</span></div>
-                <div class="nav-item" data-page="vacancies"><span class="nav-icon">🎯</span><span
-                        data-t="vacancies">Поиск вакансий</span><span class="nav-badge">10</span></div>
-                <div class="nav-item" data-page="courses"><span class="nav-icon">📚</span><span
-                        data-t="courses">Курсы</span></div>
-                <div class="nav-item" data-page="world"><span class="nav-icon">🌍</span><span data-t="world">Мировые
-                        запросы</span></div>
-                <div class="nav-group-label" data-t="employers">Работодателям</div>
-                <div class="nav-item" data-page="seeker"><span class="nav-icon">👤</span><span data-t="seeker">Кабинет
-                        соискателя</span></div>
-                <div class="nav-item" data-page="employer" style="position:relative"><span
-                        class="nav-icon">🏢</span><span data-t="employer">Кабинет работодателя</span><span
-                        class="notif-dot"></span></div>
-            </nav>
-            <div class="sidebar-footer">
-                <div class="nav-item" style="cursor:default;pointer-events:none">
-                    <div id="sidebar-avatar" class="avatar" style="width:30px;height:30px;font-size:11px;flex-shrink:0">
-                        ?</div>
-                    <div>
-                        <div id="sidebar-user-name" style="font-size:13px;font-weight:600">—</div>
-                        <div id="sidebar-user-role" style="font-size:11px;color:var(--text-muted)" data-t="student">
-                            Студент</div>
-                    </div>
-                </div>
-            </div>
+        <!-- sidebar: kept hidden so JS selectors still work -->
+        <aside class="sidebar" style="display:none" aria-hidden="true">
+            <div id="sidebar-avatar" class="avatar">?</div>
+            <div id="sidebar-user-name"></div>
+            <div id="sidebar-user-role"></div>
         </aside>
 
         <!-- ═══════════════════ MAIN ═══════════════════ -->
@@ -95,11 +76,31 @@
                     <span id="onboarding-step-text" class="onboarding-step-text">0 / 7</span>
                 </div>
                 <div class="topbar-row">
-                    <div class="topbar-title" id="topbar-title">Главная</div>
+                    <!-- Logo -->
+                    <div class="topbar-logo">⚡ FindJob</div>
+                    <!-- Horizontal Nav -->
+                    <nav class="topbar-nav">
+                        <div class="nav-item active" data-page="home"><span class="nav-icon">🏠</span><span
+                                data-t="home">Главная</span></div>
+                        <div class="nav-item" data-page="resume"><span class="nav-icon">📄</span><span
+                                data-t="resume">Резюме</span></div>
+                        <div class="nav-item" data-page="vacancies"><span class="nav-icon">🎯</span><span
+                                data-t="vacancies">Вакансии</span><span class="nav-badge">87</span></div>
+                        <div class="nav-item" data-page="courses"><span class="nav-icon">📚</span><span
+                                data-t="courses">Курсы</span></div>
+                        <div class="nav-item" data-page="world"><span class="nav-icon">🌍</span><span
+                                data-t="world">Мировые</span></div>
+                        <div class="nav-item" data-page="seeker"><span class="nav-icon">👤</span><span
+                                data-t="seeker">Мой кабинет</span></div>
+                        <div class="nav-item" data-page="employer" style="position:relative"><span
+                                class="nav-icon">🏢</span><span data-t="employer">Работодатель</span><span
+                                class="notif-dot"></span></div>
+                    </nav>
+                    <!-- Right controls -->
                     <div class="topbar-right">
                         <div class="lang-toggle">
-                            <button class="lang-btn active" data-lang="ru">RU</button>
-                            <button class="lang-btn" data-lang="kz">KZ</button>
+                            <button class="lang-btn active" data-lang="ru" onclick="setLang('ru')">RU</button>
+                            <button class="lang-btn" data-lang="kz" onclick="setLang('kz')">KZ</button>
                         </div>
                         <div id="topbar-avatar" class="avatar">?</div>
                     </div>
@@ -368,22 +369,150 @@
 
             <!-- ══ VACANCIES ══ -->
             <section id="page-vacancies" class="page">
-                <div class="section-header mb-24">
-                    <div>
-                        <div class="section-title" data-t="vacancyTitle">Поиск вакансий по шансам</div>
-                        <div class="text-sm mt-8">Отсортировано по уровню совпадения с вашим профилем</div>
+
+                <!-- ① VACANCY OF THE DAY -->
+                <div class="vac-spotlight" id="vac-of-day">
+                    <div class="vac-spotlight-label">🏆 Вакансия дня</div>
+                    <div class="vac-spotlight-title" id="vod-title">Frontend Developer — Kolesa Group</div>
+                    <div class="vac-spotlight-meta">
+                        <span id="vod-company">📍 Алматы &nbsp;·&nbsp; Kolesa Group</span>
+                        <span id="vod-salary" style="color:var(--gold);font-weight:700">300–500k ₸</span>
+                        <span class="chance-badge chance-high" id="vod-chance">🎯 92%</span>
                     </div>
+                    <div class="vac-spotlight-desc">Лучшая вакансия дня по совпадению с профилями пользователей FindJob.
+                        Обновляется ежедневно.</div>
+                    <button class="btn btn-primary btn-sm" onclick="handleApply(1)">Откликнуться →</button>
                 </div>
-                <div class="vacancy-toolbar">
+
+                <!-- ② POPULAR VACANCIES (quick chips) -->
+                <div class="section-header mb-24" style="margin-top:32px">
+                    <div class="section-title">🔥 Популярные категории</div>
+                </div>
+                <div class="popular-chips" id="popular-chips">
+                    <button class="pop-chip active" onclick="filterByCategory('')">Все</button>
+                    <button class="pop-chip" onclick="filterByCategory('it')">💻 IT</button>
+                    <button class="pop-chip" onclick="filterByCategory('design')">🎨 Дизайн</button>
+                    <button class="pop-chip" onclick="filterByCategory('marketing')">📣 Маркетинг</button>
+                    <button class="pop-chip" onclick="filterByCategory('finance')">💰 Финансы</button>
+                    <button class="pop-chip" onclick="filterByCategory('medicine')">🏥 Медицина</button>
+                    <button class="pop-chip" onclick="filterByCategory('education')">📚 Образование</button>
+                    <button class="pop-chip" onclick="filterByCategory('construction')">🏗️ Строительство</button>
+                    <button class="pop-chip" onclick="filterByCategory('food')">🍽️ Кулинария</button>
+                    <button class="pop-chip" onclick="filterByCategory('logistics')">🚚 Логистика</button>
+                    <button class="pop-chip" onclick="filterByCategory('beauty')">💇 Красота</button>
+                    <button class="pop-chip" onclick="filterByCategory('sport')">⚽ Спорт</button>
+                    <button class="pop-chip" onclick="filterByCategory('oil')">⛽ Нефть и газ</button>
+                </div>
+
+                <!-- ③ FILTERS -->
+                <details class="filter-panel" id="filter-panel">
+                    <summary class="filter-summary">⚙️ Расширенные фильтры <span class="filter-count"
+                            id="filter-count"></span></summary>
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">🌐 Язык работы</label>
+                            <select class="form-select filter-select" id="f-lang" onchange="applyFilters()">
+                                <option value="">Любой</option>
+                                <option value="ru">Русский</option>
+                                <option value="kz">Казахский</option>
+                                <option value="en">Английский</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">🎂 Возраст</label>
+                            <select class="form-select filter-select" id="f-age" onchange="applyFilters()">
+                                <option value="">Любой</option>
+                                <option value="18">18–25 лет</option>
+                                <option value="25">25–35 лет</option>
+                                <option value="35">35+ лет</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">💼 Опыт работы</label>
+                            <select class="form-select filter-select" id="f-exp" onchange="applyFilters()">
+                                <option value="">Любой</option>
+                                <option value="none">Без опыта</option>
+                                <option value="1">1–3 года</option>
+                                <option value="3">3–5 лет</option>
+                                <option value="5">5+ лет</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">📍 Местонахождение</label>
+                            <select class="form-select filter-select" id="f-city" onchange="applyFilters()">
+                                <option value="">Все города</option>
+                                <option value="Алматы">Алматы</option>
+                                <option value="Астана">Астана</option>
+                                <option value="Шымкент">Шымкент</option>
+                                <option value="Атырау">Атырау</option>
+                                <option value="remote">Удалённо</option>
+                            </select>
+                        </div>
+                        <div class="filter-group" style="grid-column:1/-1">
+                            <label class="filter-label">🏷️ Профессия / ключевое слово</label>
+                            <input type="text" class="form-input filter-select" id="f-prof"
+                                placeholder="Frontend, Бухгалтер, Врач…" oninput="applyFilters()" />
+                        </div>
+                    </div>
+                    <button class="btn btn-ghost btn-sm" style="margin-top:12px" onclick="resetFilters()">✕ Сбросить
+                        фильтры</button>
+                </details>
+
+                <!-- ④ MAIN TOOLBAR (search + risk) -->
+                <div class="vacancy-toolbar" style="margin-top:24px">
                     <input type="text" class="search-input" id="vacancy-search" data-tp="searchPlaceholder"
-                        placeholder="Поиск…" />
+                        placeholder="Поиск по названию или компании…" />
                     <div class="risk-toggle">
                         <button class="risk-btn safe-active" id="safe-btn" data-t="safeBtn">🛡️ Безопасно</button>
                         <button class="risk-btn" id="risk-btn" data-t="riskBtn">🔥 Рискую</button>
                     </div>
                 </div>
+
+                <!-- Results header -->
+                <div class="section-header mb-24">
+                    <div class="section-title">📋 Вакансии по шансам</div>
+                    <div class="text-sm" id="vacancy-count-label"></div>
+                </div>
                 <div class="grid-auto" id="vacancies-grid"></div>
+
+                <!-- ⑤ NEWS OF THE DAY -->
+                <div class="section-header" style="margin-top:48px;margin-bottom:20px">
+                    <div class="section-title">📰 Новости рынка труда</div>
+                    <span class="news-date" id="news-date"></span>
+                </div>
+                <div class="news-grid">
+                    <article class="news-card news-card-featured">
+                        <div class="news-tag">🔥 Главное</div>
+                        <div class="news-title">Рынок IT в Казахстане вырос на 34% — рекордные показатели за 5 лет</div>
+                        <div class="news-body">По данным Министерства цифрового развития, спрос на IT-специалистов
+                            достиг рекорда. Средняя зарплата Junior-разработчика выросла до 280 000 ₸.</div>
+                        <div class="news-meta">📅 Сегодня &nbsp;·&nbsp; 🏛️ МЦРКиАП РК</div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-tag">💰 Зарплаты</div>
+                        <div class="news-title">Бухгалтеры и финансисты стали самыми востребованными в Алматы</div>
+                        <div class="news-body">Количество вакансий в финансовом секторе выросло на 22% по сравнению с
+                            прошлым кварталом.</div>
+                        <div class="news-meta">📅 Сегодня &nbsp;·&nbsp; 🌐 hh.kz</div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-tag">🎓 Образование</div>
+                        <div class="news-title">Новые программы стажировок от Samruk-Kazyna для студентов</div>
+                        <div class="news-body">Государственный холдинг открывает 500 мест для стажёров в 2026 году —
+                            дедлайн подачи заявок 1 апреля.</div>
+                        <div class="news-meta">📅 Сегодня &nbsp;·&nbsp; 🏢 Самрук-Казына</div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-tag">⚡ Тренд</div>
+                        <div class="news-title">Удалённая работа: 40% компаний сохранят гибридный формат</div>
+                        <div class="news-body">Исследование HeadHunter показало, что большинство казахстанских
+                            работодателей планируют сохранить гибридный формат работы в 2026 году.</div>
+                        <div class="news-meta">📅 Сегодня &nbsp;·&nbsp; 🌐 hh.kz</div>
+                    </article>
+                </div>
+
             </section>
+
 
             <!-- ══ COURSES ══ -->
             <section id="page-courses" class="page">
@@ -546,108 +675,242 @@
 
             <!-- ══ EMPLOYER CABINET ══ -->
             <section id="page-employer" class="page">
-                <div class="profile-header">
-                    <div class="profile-big-avatar" style="background:linear-gradient(135deg,#059669,#10B981)">🏢</div>
-                    <div>
-                        <div class="profile-name">Kolesa Group</div>
-                        <div class="profile-tagline">Работодатель · Алматы</div>
-                        <div class="chips-row" style="margin-top:10px">
-                            <span class="chip chip-green">✓ Верифицирован</span>
-                            <span class="chip">🚗 Авто / IT</span>
-                        </div>
-                    </div>
-                    <div class="profile-stats">
-                        <div class="profile-stat">
-                            <div class="profile-stat-value" style="color:var(--green)">4</div>
-                            <div class="profile-stat-label" data-t="empStats1">Активных</div>
-                        </div>
-                        <div class="profile-stat">
-                            <div class="profile-stat-value">46</div>
-                            <div class="profile-stat-label" data-t="empStats2">Откликов</div>
-                        </div>
-                        <div class="profile-stat">
-                            <div class="profile-stat-value">905</div>
-                            <div class="profile-stat-label" data-t="empStats3">Просмотров</div>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary btn-sm" onclick="showToast('🚀 Форма создания вакансии!')"
-                        data-t="addVacancy">+ Новая вакансия</button>
-                </div>
-                <div class="stats-grid" style="margin-bottom:24px">
-                    <div class="stat-card">
-                        <div class="stat-icon">💼</div>
-                        <div class="stat-value">4</div>
-                        <div class="stat-label" data-t="empStats1">Активных вакансий</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">📨</div>
-                        <div class="stat-value">46</div>
-                        <div class="stat-label" data-t="empStats2">Всего откликов</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">👁</div>
-                        <div class="stat-value">905</div>
-                        <div class="stat-label" data-t="empStats3">Просмотров</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">✅</div>
-                        <div class="stat-value">3</div>
-                        <div class="stat-label" data-t="empStats4">Нанято</div>
-                    </div>
-                </div>
+
+                <!-- Profile Header (rendered by JS) -->
+                <div id="emp-profile-header"></div>
+
+                <!-- Stats (rendered by JS) -->
+                <div id="emp-stats-grid" class="stats-grid" style="margin-bottom:24px"></div>
+
+                <!-- Tabs -->
                 <div class="tab-bar">
                     <button class="tab-btn active" data-tab="emp-vac" onclick="setTab('employer','emp-vac')"
-                        data-t="myVacancies">Мои вакансии</button>
+                        data-t="myVacancies">📋 Мои вакансии</button>
                     <button class="tab-btn" data-tab="emp-cand" onclick="setTab('employer','emp-cand')"
-                        data-t="candidates">Кандидаты</button>
+                        data-t="candidates">👥 Кандидаты</button>
+                    <button class="tab-btn" data-tab="emp-analytics" onclick="setTab('employer','emp-analytics')"
+                        data-t="empAnalytics">📊 Аналитика</button>
+                    <button class="tab-btn" data-tab="emp-settings" onclick="setTab('employer','emp-settings')"
+                        data-t="empSettings">⚙️ Настройки</button>
                 </div>
+
+                <!-- My Vacancies -->
                 <div data-tab="emp-vac" class="tab-content">
                     <div class="section-header mb-24">
                         <div class="section-title" data-t="myVacancies">Мои вакансии</div>
-                        <button class="btn btn-primary btn-sm" onclick="showToast('🚀 Откроется форма вакансии!')"
-                            data-t="addVacancy">+ Новая вакансия</button>
+                        <button class="btn btn-primary btn-sm" onclick="openPostJobModal()" data-t="addVacancy">+ Новая
+                            вакансия</button>
                     </div>
                     <div id="employer-vacancies"></div>
                 </div>
+
+                <!-- Candidates -->
                 <div data-tab="emp-cand" class="tab-content hidden">
                     <div class="section-header mb-24">
-                        <div class="section-title" data-t="candidates">Кандидаты</div>
-                        <div class="chip chip-green">46 откликов</div>
+                        <div class="section-title" data-t="candidates">👥 Кандидаты</div>
+                        <div style="display:flex;align-items:center;gap:12px">
+                            <select class="form-select" id="cand-filter-vac" onchange="renderEmpCandidates()"
+                                style="min-width:200px">
+                                <option value="">Все вакансии</option>
+                            </select>
+                            <select class="form-select" id="cand-filter-status" onchange="renderEmpCandidates()"
+                                style="min-width:160px">
+                                <option value="">Все статусы</option>
+                                <option value="new">🆕 Новый</option>
+                                <option value="reviewed">👁 Просмотрен</option>
+                                <option value="interview">📅 Интервью</option>
+                                <option value="hired">✅ Нанят</option>
+                                <option value="rejected">✕ Отказ</option>
+                            </select>
+                        </div>
                     </div>
-                    <div style="display:flex;flex-direction:column;gap:10px">
-                        <div class="applied-row">
-                            <div style="font-size:28px">👨‍💻</div>
-                            <div class="applied-info">
-                                <div class="applied-title">Алихан М.</div>
-                                <div class="applied-company">Frontend Dev · КазНТУ</div>
-                            </div>
-                            <div class="chance-badge chance-high">87%</div>
-                            <button class="btn btn-primary btn-sm"
-                                onclick="showToast('📋 Профиль кандидата открыт')">Смотреть</button>
+                    <div id="employer-candidates"></div>
+                </div>
+
+                <!-- Analytics -->
+                <div data-tab="emp-analytics" class="tab-content hidden">
+                    <div class="section-header mb-24">
+                        <div class="section-title" data-t="empAnalytics">📊 Аналитика</div>
+                        <div class="chip chip-gold">Последние 7 дней</div>
+                    </div>
+                    <div class="grid-2" style="gap:16px;margin-bottom:24px">
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:16px">👁 Просмотры вакансий</div>
+                            <div id="emp-chart-views" class="emp-bar-chart"></div>
                         </div>
-                        <div class="applied-row">
-                            <div style="font-size:28px">👩‍💻</div>
-                            <div class="applied-info">
-                                <div class="applied-title">Динара С.</div>
-                                <div class="applied-company">Frontend Dev · МУИТ</div>
-                            </div>
-                            <div class="chance-badge chance-mid">62%</div>
-                            <button class="btn btn-primary btn-sm"
-                                onclick="showToast('📋 Профиль кандидата открыт')">Смотреть</button>
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:16px">📨 Отклики</div>
+                            <div id="emp-chart-responses" class="emp-bar-chart"></div>
                         </div>
-                        <div class="applied-row">
-                            <div style="font-size:28px">👨‍🎓</div>
-                            <div class="applied-info">
-                                <div class="applied-title">Нурлан А.</div>
-                                <div class="applied-company">Frontend Dev · КазГЮУ</div>
+                    </div>
+                    <div class="card" style="margin-bottom:16px">
+                        <div class="card-title" style="margin-bottom:16px">🏆 Рейтинг вакансий</div>
+                        <div id="emp-vacancy-ranking"></div>
+                    </div>
+                    <div class="grid-2" style="gap:16px">
+                        <div class="card">
+                            <div class="card-title">🎓 Университеты кандидатов</div>
+                            <div id="emp-uni-chart" style="margin-top:16px"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">📱 Статусы кандидатов</div>
+                            <div id="emp-status-donut" style="margin-top:16px"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div data-tab="emp-settings" class="tab-content hidden">
+                    <div class="grid-2" style="gap:16px">
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:16px">🏢 Информация о компании</div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="companyName">Название компании</label>
+                                <input type="text" class="form-input" id="emp-edit-name" placeholder="Kolesa Group" />
                             </div>
-                            <div class="chance-badge chance-low">41%</div>
-                            <button class="btn btn-primary btn-sm"
-                                onclick="showToast('📋 Профиль кандидата открыт')">Смотреть</button>
+                            <div class="input-group">
+                                <label class="input-label" data-t="companyIndustry">Отрасль</label>
+                                <select class="form-select" id="emp-edit-industry">
+                                    <option>IT / Технологии</option>
+                                    <option>Финансы / Банки</option>
+                                    <option>Производство</option>
+                                    <option>Розничная торговля</option>
+                                    <option>Строительство</option>
+                                    <option>Медицина</option>
+                                    <option>Образование</option>
+                                    <option>Нефть и газ</option>
+                                    <option>Логистика</option>
+                                    <option>Маркетинг / Реклама</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Город</label>
+                                <select class="form-select" id="emp-edit-city">
+                                    <option>Алматы</option>
+                                    <option>Астана</option>
+                                    <option>Шымкент</option>
+                                    <option>Атырау</option>
+                                    <option>Актобе</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="companyWebsite">Сайт компании</label>
+                                <input type="text" class="form-input" id="emp-edit-website"
+                                    placeholder="https://kolesa.kz" />
+                            </div>
+                            <button class="btn btn-primary" onclick="saveEmployerSettings()"
+                                data-t="save">Сохранить</button>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:16px">📝 О компании</div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="companyAbout">Описание</label>
+                                <textarea class="form-input" rows="5" id="emp-edit-about" style="resize:vertical"
+                                    placeholder="Расскажите о вашей компании…"></textarea>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Размер компании</label>
+                                <select class="form-select" id="emp-edit-size">
+                                    <option>1–10 сотрудников</option>
+                                    <option>11–50 сотрудников</option>
+                                    <option selected>51–200 сотрудников</option>
+                                    <option>201–1000 сотрудников</option>
+                                    <option>1000+ сотрудников</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Уведомления о новых откликах</label>
+                                <select class="form-select">
+                                    <option>Мгновенно</option>
+                                    <option>Раз в день</option>
+                                    <option>Раз в неделю</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" onclick="saveEmployerSettings()"
+                                data-t="save">Сохранить</button>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <!-- ══ POST JOB MODAL ══ -->
+            <div id="post-job-modal" class="modal-overlay hidden" onclick="closePostJobModal(event)">
+                <div class="modal-box" onclick="event.stopPropagation()">
+                    <div class="modal-header">
+                        <div class="modal-title">📋 Новая вакансия</div>
+                        <button class="modal-close" onclick="closePostJobModal()">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="grid-2" style="gap:14px">
+                            <div class="input-group">
+                                <label class="input-label" data-t="jobTitle">Название должности *</label>
+                                <input type="text" class="form-input" id="job-title" placeholder="Frontend Developer" />
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="jobSalary">Зарплата</label>
+                                <input type="text" class="form-input" id="job-salary"
+                                    placeholder="300 000 – 500 000 ₸" />
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="jobLocation">Город</label>
+                                <select class="form-select" id="job-location">
+                                    <option>Алматы</option>
+                                    <option>Астана</option>
+                                    <option>Шымкент</option>
+                                    <option>Атырау</option>
+                                    <option>Удалённо</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="jobType">Формат работы</label>
+                                <select class="form-select" id="job-type">
+                                    <option value="fulltime">Полный день</option>
+                                    <option value="hybrid">Гибрид</option>
+                                    <option value="remote">Удалённо</option>
+                                    <option value="parttime">Частичная занятость</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="jobCategory">Категория</label>
+                                <select class="form-select" id="job-category">
+                                    <option value="it">💻 IT</option>
+                                    <option value="design">🎨 Дизайн</option>
+                                    <option value="marketing">📣 Маркетинг</option>
+                                    <option value="finance">💰 Финансы</option>
+                                    <option value="medicine">🏥 Медицина</option>
+                                    <option value="education">📚 Образование</option>
+                                    <option value="construction">🏗️ Строительство</option>
+                                    <option value="food">🍽️ Кулинария</option>
+                                    <option value="logistics">🚚 Логистика</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Опыт работы</label>
+                                <select class="form-select" id="job-exp">
+                                    <option>Без опыта</option>
+                                    <option>1–3 года</option>
+                                    <option>3–5 лет</option>
+                                    <option>5+ лет</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group" style="margin-top:4px">
+                            <label class="input-label" data-t="jobDesc">Описание вакансии</label>
+                            <textarea class="form-input" rows="3" id="job-desc" style="resize:vertical"
+                                placeholder="Чем будет заниматься сотрудник…"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label" data-t="jobReqs">Требования</label>
+                            <textarea class="form-input" rows="3" id="job-reqs" style="resize:vertical"
+                                placeholder="Знание React, опыт работы с API…"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-ghost" onclick="closePostJobModal()">Отмена</button>
+                        <button class="btn btn-primary" onclick="saveNewVacancy()">🚀 Опубликовать</button>
+                    </div>
+                </div>
+            </div>
 
         </main>
     </div>

@@ -145,16 +145,144 @@ const ONBOARDING_QUESTIONS = {
 
 /* ── VACANCIES DATA ── */
 const vacanciesBase = [
+  // ── IT & Tech ──
   { id: 1, emoji: '💻', title: 'Frontend Developer', company: 'Kolesa Group', salary: '300–500k ₸', location: 'Алматы', type: 'hybrid', tags: ['react', 'javascript', 'html', 'css', 'typescript', 'frontend'], risky: false },
-  { id: 2, emoji: '📊', title: 'Data Analyst Intern', company: 'Jusan Bank', salary: '180–250k ₸', location: 'Нур-Султан', type: 'fulltime', tags: ['python', 'sql', 'excel', 'data', 'аналитик', 'анализ'], risky: false },
-  { id: 3, emoji: '🎨', title: 'UX/UI Designer', company: 'Chocofamily', salary: '250–350k ₸', location: 'Алматы', type: 'remote', tags: ['figma', 'дизайн', 'design', 'ui', 'ux', 'adobe'], risky: false },
+  { id: 2, emoji: '📊', title: 'Data Analyst Intern', company: 'Jusan Bank', salary: '180–250k ₸', location: 'Астана', type: 'fulltime', tags: ['python', 'sql', 'excel', 'data', 'аналитик', 'анализ'], risky: false },
+  { id: 3, emoji: '🎨', title: 'UX/UI Designer', company: 'Chocofamily', salary: '250–350k ₸', location: 'Алматы', type: 'remote', tags: ['figma', 'дизайн', 'design', 'ui', 'ux', 'adobe', 'photoshop'], risky: false },
   { id: 4, emoji: '🤖', title: 'ML Engineer', company: 'Sber Kazakhstan', salary: '500–800k ₸', location: 'Алматы', type: 'hybrid', tags: ['python', 'ml', 'tensorflow', 'ai', 'machine learning'], risky: true },
   { id: 5, emoji: '📱', title: 'iOS Developer', company: 'Kaspi.kz', salary: '600–900k ₸', location: 'Алматы', type: 'fulltime', tags: ['swift', 'ios', 'mobile', 'xcode'], risky: true },
-  { id: 6, emoji: '🌐', title: 'Marketing Manager', company: 'BI Group', salary: '200–300k ₸', location: 'Нур-Султан', type: 'fulltime', tags: ['маркетинг', 'marketing', 'smm', 'контент', 'excel'], risky: false },
-  { id: 7, emoji: '🔐', title: 'Cybersecurity Analyst', company: 'КазМунайГаз', salary: '400–650k ₸', location: 'Атырау', type: 'fulltime', tags: ['security', 'кибербезопасность', 'linux', 'network'], risky: true },
-  { id: 8, emoji: '✍️', title: 'Content Creator', company: 'Kcell', salary: '160–220k ₸', location: 'Алматы', type: 'remote', tags: ['контент', 'content', 'smm', 'копирайтинг', 'маркетинг'], risky: false },
-  { id: 9, emoji: '🏗️', title: 'Project Manager', company: 'Expo 2025', salary: '350–550k ₸', location: 'Алматы', type: 'hybrid', tags: ['менеджмент', 'управление', 'project', 'agile', 'scrum'], risky: true },
-  { id: 10, emoji: '🧪', title: 'QA Engineer', company: 'Air Astana', salary: '220–320k ₸', location: 'Алматы', type: 'fulltime', tags: ['тестирование', 'qa', 'testing', 'selenium', 'jira'], risky: false },
+  { id: 6, emoji: '🔐', title: 'Cybersecurity Analyst', company: 'КазМунайГаз', salary: '400–650k ₸', location: 'Атырау', type: 'fulltime', tags: ['security', 'кибербезопасность', 'linux', 'network', 'cisco'], risky: true },
+  { id: 7, emoji: '🧪', title: 'QA Engineer', company: 'Air Astana', salary: '220–320k ₸', location: 'Алматы', type: 'fulltime', tags: ['тестирование', 'qa', 'testing', 'selenium', 'jira'], risky: false },
+  { id: 8, emoji: '☁️', title: 'Backend Developer (Node)', company: 'Beeline KZ', salary: '350–550k ₸', location: 'Алматы', type: 'remote', tags: ['node', 'javascript', 'backend', 'api', 'mongodb', 'postgresql'], risky: false },
+
+  // ── Аналитик / Менеджмент ──
+  { id: 9, emoji: '📈', title: 'Бизнес-аналитик', company: 'Halyk Bank', salary: '280–420k ₸', location: 'Алматы', type: 'fulltime', tags: ['аналитик', 'excel', 'sql', 'bpmn', 'бизнес', 'power bi', 'анализ'], risky: false },
+  { id: 10, emoji: '📋', title: 'Финансовый аналитик', company: 'Freedom Finance', salary: '300–500k ₸', location: 'Астана', type: 'fulltime', tags: ['финансы', 'excel', 'аналитик', 'бухгалтерия', '1с', 'анализ'], risky: false },
+  { id: 11, emoji: '🏗️', title: 'Project Manager (IT)', company: 'Expo 2025', salary: '350–550k ₸', location: 'Алматы', type: 'hybrid', tags: ['менеджмент', 'управление', 'project', 'agile', 'scrum', 'jira'], risky: false },
+  { id: 12, emoji: '🧩', title: 'Продуктовый менеджер', company: 'Kaspi.kz', salary: '400–700k ₸', location: 'Алматы', type: 'hybrid', tags: ['product', 'менеджмент', 'roadmap', 'аналитика', 'ux', 'kpi'], risky: true },
+  { id: 13, emoji: '🏢', title: 'Административный менеджер', company: 'BI Group', salary: '180–260k ₸', location: 'Астана', type: 'fulltime', tags: ['менеджмент', 'администрирование', 'office', 'документооборот', 'организация'], risky: false },
+  { id: 14, emoji: '📌', title: 'HR менеджер', company: 'Air Astana', salary: '200–320k ₸', location: 'Алматы', type: 'hybrid', tags: ['hr', 'персонал', 'рекрутинг', 'кадры', 'обучение', 'менеджмент'], risky: false },
+  { id: 15, emoji: '🎯', title: 'Менеджер по продажам', company: 'Samsung KZ', salary: '200–400k ₸+', location: 'Алматы', type: 'fulltime', tags: ['продажи', 'sales', 'crm', 'переговоры', 'клиенты', 'менеджмент'], risky: false },
+
+  // ── Закупки / Продажи / Торговля ──
+  { id: 16, emoji: '📦', title: 'Менеджер по закупкам', company: 'Магнум', salary: '220–350k ₸', location: 'Алматы', type: 'fulltime', tags: ['закупки', 'снабжение', 'поставщики', 'тендер', 'переговоры', 'логистика'], risky: false },
+  { id: 17, emoji: '🛒', title: 'Закупщик (категорийный)', company: 'Arbuz.kz', salary: '250–380k ₸', location: 'Алматы', type: 'hybrid', tags: ['закупки', 'категорийный', 'анализ', 'excel', 'маркетплейс', 'поставщики'], risky: false },
+  { id: 18, emoji: '💼', title: 'Торговый представитель', company: 'Coca-Cola KZ', salary: '180–300k ₸+', location: 'Алматы', type: 'fulltime', tags: ['продажи', 'торговый', 'переговоры', 'B2B', 'CRM', 'клиенты'], risky: false },
+  { id: 19, emoji: '🏬', title: 'Менеджер маркетплейса', company: 'Wildberries KZ', salary: '200–350k ₸', location: 'Удалённо', type: 'remote', tags: ['wildberries', 'ozon', 'маркетплейс', 'продажи', 'excel', 'аналитика'], risky: false },
+  { id: 20, emoji: '📊', title: 'Аналитик продаж', company: 'Technodom', salary: '220–320k ₸', location: 'Алматы', type: 'fulltime', tags: ['аналитик', 'продажи', 'excel', 'sql', 'power bi', 'анализ'], risky: false },
+
+  // ── Маркетинг / Контент ──
+  { id: 21, emoji: '🌐', title: 'SMM-менеджер', company: 'Kcell', salary: '160–250k ₸', location: 'Алматы', type: 'remote', tags: ['smm', 'instagram', 'контент', 'маркетинг', 'копирайтинг', 'таргет'], risky: false },
+  { id: 22, emoji: '✍️', title: 'Копирайтер / редактор', company: 'Forbes KZ', salary: '150–250k ₸', location: 'Удалённо', type: 'remote', tags: ['копирайтинг', 'контент', 'редактура', 'seo', 'текст', 'журналистика'], risky: false },
+
+  // ── Видеомонтаж / Фото / Медиа ──
+  { id: 23, emoji: '🎬', title: 'Видеомонтажёр', company: 'QazMedia', salary: '200–350k ₸', location: 'Алматы', type: 'hybrid', tags: ['видеомонтаж', 'premiere', 'after effects', 'видео', 'монтаж', 'youtube'], risky: false },
+  { id: 24, emoji: '🎥', title: 'Видеограф / Оператор', company: 'Студия ALTA', salary: '220–400k ₸', location: 'Алматы', type: 'fulltime', tags: ['видеограф', 'съёмка', 'оператор', 'камера', 'видео', 'монтаж'], risky: false },
+  { id: 25, emoji: '📸', title: 'Фотограф / Фоторетушёр', company: 'AD Studio', salary: '180–320k ₸', location: 'Алматы', type: 'parttime', tags: ['фотография', 'ретушь', 'photoshop', 'lightroom', 'фотошоп', 'монтаж'], risky: false },
+  { id: 26, emoji: '🖼️', title: 'Графический дизайнер', company: 'BBDO Almaty', salary: '200–350k ₸', location: 'Алматы', type: 'fulltime', tags: ['дизайн', 'photoshop', 'illustrator', 'indesign', 'графика', 'adobe'], risky: false },
+  { id: 27, emoji: '🎞️', title: 'Motion-дизайнер', company: 'Первый Канал KZ', salary: '250–400k ₸', location: 'Алматы', type: 'fulltime', tags: ['motion', 'after effects', 'анимация', 'дизайн', 'видеомонтаж', 'cinema 4d'], risky: false },
+
+  // ── Видеонаблюдение / Безопасность / Охрана ──
+  { id: 28, emoji: '📷', title: 'Инженер видеонаблюдения', company: 'Globus Security', salary: '220–350k ₸', location: 'Алматы', type: 'fulltime', tags: ['видеонаблюдение', 'cctv', 'hikvision', 'dahua', 'охранные системы', 'монтаж'], risky: false },
+  { id: 29, emoji: '🔒', title: 'Монтажник СКУД / CCTV', company: 'Армада Безопасность', salary: '180–280k ₸', location: 'Астана', type: 'fulltime', tags: ['скуд', 'cctv', 'видеонаблюдение', 'монтаж', 'охранные системы', 'сети'], risky: false },
+  { id: 30, emoji: '🛡️', title: 'Охранник (объект)', company: 'Барс Секьюрити', salary: '160–220k ₸', location: 'Алматы', type: 'fulltime', tags: ['охрана', 'безопасность', 'объект', 'охранник', 'дежурство', 'пропускной режим'], risky: false },
+  { id: 31, emoji: '🔑', title: 'Старший охранник / ЧОП', company: 'Алем Секьюрити', salary: '200–280k ₸', location: 'Алматы', type: 'fulltime', tags: ['охрана', 'старший', 'чоп', 'безопасность', 'физическая охрана', 'управление'], risky: false },
+  { id: 32, emoji: '🖥️', title: 'Оператор видеонаблюдения', company: 'ТРЦ Мега', salary: '150–200k ₸', location: 'Алматы', type: 'fulltime', tags: ['видеонаблюдение', 'оператор', 'cctv', 'мониторинг', 'охрана', 'дежурство'], risky: false },
+
+  // ── Образование / Обучение ──
+  { id: 33, emoji: '📚', title: 'Учитель математики', company: 'Мектеп №214', salary: '150–220k ₸', location: 'Алматы', type: 'fulltime', tags: ['учитель', 'математика', 'образование', 'школа', 'педагогика', 'обучение'], risky: false },
+  { id: 34, emoji: '🎓', title: 'Преподаватель английского', company: 'Cambridge Centre', salary: '200–380k ₸', location: 'Алматы', type: 'parttime', tags: ['учитель', 'английский', 'преподавание', 'ielts', 'обучение', 'язык'], risky: false },
+  { id: 35, emoji: '👩‍🏫', title: 'Тренер / корпоративный тренер', company: 'Ernst & Young KZ', salary: '300–500k ₸', location: 'Астана', type: 'hybrid', tags: ['тренер', 'обучение', 'тренинг', 'hr', 'коучинг', 'soft skills'], risky: false },
+
+  // ── Кулинария / HoReCa ──
+  { id: 36, emoji: '👨‍🍳', title: 'Повар (горячий цех)', company: 'Ресторан Bamyan', salary: '180–280k ₸', location: 'Алматы', type: 'fulltime', tags: ['повар', 'кухня', 'кулинария', 'горячий цех', 'ресторан', 'horeca'], risky: false },
+  { id: 37, emoji: '🍕', title: 'Шеф-повар', company: 'Ginza Project KZ', salary: '350–600k ₸', location: 'Алматы', type: 'fulltime', tags: ['шеф', 'повар', 'кулинария', 'меню', 'ресторан', 'кухня', 'horeca'], risky: false },
+  { id: 38, emoji: '☕', title: 'Бариста', company: 'Coffeemania', salary: '130–200k ₸', location: 'Алматы', type: 'parttime', tags: ['бариста', 'кофе', 'obслуживание', 'кафе', 'клиенты', 'horeca'], risky: false },
+
+  // ── Музыка / Творчество ──
+  { id: 39, emoji: '🎵', title: 'Музыкант / Композитор', company: 'Qazaq Film Studio', salary: '200–450k ₸', location: 'Алматы', type: 'parttime', tags: ['музыка', 'композитор', 'звукорежиссёр', 'midi', 'ableton', 'саундтрек'], risky: false },
+  { id: 40, emoji: '🎹', title: 'Звукорежиссёр', company: 'Студия Mono', salary: '220–400k ₸', location: 'Алматы', type: 'fulltime', tags: ['звукорежиссёр', 'звук', 'pro tools', 'cubase', 'музыка', 'сведение'], risky: false },
+  { id: 41, emoji: '🎤', title: 'Ведущий / DJ мероприятий', company: 'Event Agency STAR', salary: '200–600k ₸', location: 'Алматы', type: 'parttime', tags: ['ведущий', 'dj', 'музыка', 'event', 'мероприятие', 'шоу'], risky: false },
+
+  // ── Строительство / Технические ──
+  { id: 42, emoji: '🔧', title: 'Инженер-электрик', company: 'Самрук-Казына', salary: '280–450k ₸', location: 'Астана', type: 'fulltime', tags: ['электрик', 'инженер', 'монтаж', 'автоматизация', 'схемы', 'пуэ'], risky: false },
+  { id: 43, emoji: '🏗️', title: 'Прораб / Начальник участка', company: 'BI Group', salary: '350–550k ₸', location: 'Астана', type: 'fulltime', tags: ['прораб', 'строительство', 'управление', 'смета', 'объект', 'бригада'], risky: false },
+
+  // ── Логистика / Склад ──
+  { id: 44, emoji: '🚚', title: 'Логист / Диспетчер', company: 'Arbuz.kz', salary: '200–320k ₸', location: 'Алматы', type: 'fulltime', tags: ['логистика', 'диспетчер', 'доставка', 'склад', 'маршруты', 'excel'], risky: false },
+  { id: 45, emoji: '📦', title: 'Кладовщик / Оператор склада', company: 'Wildberries KZ', salary: '150–220k ₸', location: 'Алматы', type: 'fulltime', tags: ['склад', 'кладовщик', 'инвентаризация', '1с', 'логистика', 'wms'], risky: false },
+  { id: 46, emoji: '🚛', title: 'Экспедитор / Курьер', company: 'Yandex Go KZ', salary: '140–220k ₸', location: 'Алматы', type: 'fulltime', tags: ['экспедитор', 'курьер', 'доставка', 'логистика', 'водитель', 'маршруты'], risky: false },
+  { id: 47, emoji: '🚗', title: 'Водитель-экспедитор (B, C)', company: 'Magnum Cash&Carry', salary: '200–300k ₸', location: 'Алматы', type: 'fulltime', tags: ['водитель', 'экспедитор', 'доставка', 'категория b', 'логистика'], risky: false },
+
+  // ── Бухгалтерия / Финансы (локальные) ──
+  { id: 48, emoji: '🧾', title: 'Бухгалтер (1С:Бухгалтерия)', company: 'Silkway Group', salary: '200–320k ₸', location: 'Алматы', type: 'fulltime', tags: ['бухгалтер', '1с', 'бухгалтерия', 'налоги', 'excel', 'отчётность'], risky: false },
+  { id: 49, emoji: '💰', title: 'Главный бухгалтер', company: 'Astana Motors', salary: '350–550k ₸', location: 'Алматы', type: 'fulltime', tags: ['главный бухгалтер', '1с', 'бухгалтерия', 'налоги', 'мсфо', 'отчётность'], risky: false },
+  { id: 50, emoji: '📑', title: 'Бухгалтер на первичку', company: 'Рыночная сеть Арка', salary: '160–220k ₸', location: 'Шымкент', type: 'fulltime', tags: ['бухгалтер', '1с', 'первичная документация', 'excel', 'накладные', 'счета'], risky: false },
+  { id: 51, emoji: '📉', title: 'Кассир / Старший кассир', company: 'METRO KZ', salary: '130–190k ₸', location: 'Алматы', type: 'fulltime', tags: ['кассир', 'касса', 'торговля', 'обслуживание', '1с', 'excel'], risky: false },
+
+  // ── Юриспруденция / Право ──
+  { id: 52, emoji: '⚖️', title: 'Юрист / Юрисконсульт', company: 'Halyk Bank', salary: '280–450k ₸', location: 'Алматы', type: 'fulltime', tags: ['юрист', 'юриспруденция', 'право', 'договор', 'суд', 'законодательство'], risky: false },
+  { id: 53, emoji: '📜', title: 'Помощник юриста (стажёр)', company: 'GRATA International', salary: '150–220k ₸', location: 'Алматы', type: 'fulltime', tags: ['юрист', 'право', 'стажёр', 'договор', 'документооборот', 'законодательство'], risky: false },
+
+  // ── Медицина / Здоровье ──
+  { id: 54, emoji: '🏥', title: 'Медсестра / Медбрат', company: 'Клиника Сункар', salary: '150–220k ₸', location: 'Алматы', type: 'fulltime', tags: ['медсестра', 'медицина', 'уход', 'здоровье', 'процедуры', 'больница'], risky: false },
+  { id: 55, emoji: '🩺', title: 'Врач-терапевт (поликлиника)', company: 'МЦ Авиценна', salary: '300–500k ₸', location: 'Астана', type: 'fulltime', tags: ['врач', 'терапевт', 'медицина', 'диагностика', 'здоровье', 'поликлиника'], risky: false },
+  { id: 56, emoji: '💊', title: 'Фармацевт / Провизор', company: 'Сеть аптек Европа', salary: '180–280k ₸', location: 'Алматы', type: 'fulltime', tags: ['фармацевт', 'аптека', 'провизор', 'лекарства', 'медицина', 'клиенты'], risky: false },
+  { id: 57, emoji: '🧬', title: 'Лаборант / Биохимик', company: 'Инвитро KZ', salary: '160–250k ₸', location: 'Алматы', type: 'fulltime', tags: ['лаборант', 'биохимия', 'анализы', 'лаборатория', 'медицина', 'исследования'], risky: false },
+
+  // ── Красота / Здоровье ──
+  { id: 58, emoji: '💇', title: 'Парикмахер / Стилист', company: 'Студия Персона', salary: '150–350k ₸', location: 'Алматы', type: 'fulltime', tags: ['парикмахер', 'стилист', 'красота', 'стрижка', 'окрашивание', 'салон'], risky: false },
+  { id: 59, emoji: '💅', title: 'Мастер маникюра / педикюра', company: 'Nail Beauty Studio', salary: '130–300k ₸', location: 'Алматы', type: 'parttime', tags: ['маникюр', 'педикюр', 'красота', 'ногти', 'салон', 'клиенты'], risky: false },
+  { id: 60, emoji: '🧖', title: 'Мастер эпиляции / косметолог', company: 'Beauty Lab KZ', salary: '160–320k ₸', location: 'Алматы', type: 'parttime', tags: ['косметолог', 'эпиляция', 'красота', 'уход', 'процедуры', 'клиенты'], risky: false },
+
+  // ── Недвижимость / Строительство ──
+  { id: 61, emoji: '🏠', title: 'Риэлтор (агент по недвижимости)', company: 'Квартал Недвижимость', salary: '200–500k ₸', location: 'Алматы', type: 'fulltime', tags: ['риэлтор', 'недвижимость', 'продажи', 'аренда', 'клиенты', 'переговоры'], risky: false },
+  { id: 62, emoji: '🏡', title: 'Менеджер по аренде жилья', company: 'Inbiz.kz', salary: '180–300k ₸', location: 'Алматы', type: 'hybrid', tags: ['аренда', 'недвижимость', 'клиенты', 'менеджмент', 'переговоры', 'excel'], risky: false },
+  { id: 63, emoji: '🔨', title: 'Отделочник / Маляр-штукатур', company: 'СК Профстрой', salary: '200–350k ₸', location: 'Астана', type: 'fulltime', tags: ['отделочник', 'маляр', 'штукатур', 'ремонт', 'строительство', 'отделка'], risky: false },
+  { id: 64, emoji: '🪛', title: 'Сантехник', company: 'СервисПлюс KZ', salary: '180–320k ₸', location: 'Алматы', type: 'fulltime', tags: ['сантехник', 'монтаж', 'ремонт', 'водоснабжение', 'отопление', 'инженер'], risky: false },
+
+  // ── Розница / Обслуживание ──
+  { id: 65, emoji: '🛍️', title: 'Продавец-консультант', company: 'Technodom', salary: '130–200k ₸', location: 'Алматы', type: 'fulltime', tags: ['продавец', 'консультант', 'розница', 'продажи', 'клиенты', 'торговля'], risky: false },
+  { id: 66, emoji: '🧴', title: 'Продавец (косметика и бытхим)', company: 'Magnum', salary: '120–180k ₸', location: 'Шымкент', type: 'fulltime', tags: ['продавец', 'косметика', 'розница', 'торговля', 'клиенты', 'обслуживание'], risky: false },
+  { id: 67, emoji: '📟', title: 'Оператор call-центра', company: 'Kcell', salary: '140–200k ₸', location: 'Алматы', type: 'hybrid', tags: ['оператор', 'call-центр', 'колл-центр', 'клиенты', 'общение', 'поддержка'], risky: false },
+  { id: 68, emoji: '🌡️', title: 'Администратор клиники', company: 'МЦ Нур-Медикал', salary: '150–220k ₸', location: 'Астана', type: 'fulltime', tags: ['администратор', 'медицина', 'регистратура', 'клиенты', 'документооборот', 'организация'], risky: false },
+  { id: 69, emoji: '🍔', title: 'Кассир / Сотрудник кухни (ФF)', company: 'KFC Казахстан', salary: '120–170k ₸', location: 'Алматы', type: 'parttime', tags: ['кассир', 'кухня', 'fastfood', 'обслуживание', 'повар', 'касса'], risky: false },
+
+  // ── IT Поддержка / Сети ──
+  { id: 70, emoji: '🖨️', title: 'Техник IT-поддержки (Helpdesk)', company: 'Samruk Digital', salary: '180–280k ₸', location: 'Астана', type: 'fulltime', tags: ['helpdesk', 'техподдержка', 'windows', 'сети', 'it', 'поддержка'], risky: false },
+  { id: 71, emoji: '🌐', title: 'Системный администратор', company: 'Казтелерадио', salary: '250–400k ₸', location: 'Алматы', type: 'fulltime', tags: ['системный администратор', 'windows', 'linux', 'сети', 'сервер', 'it'], risky: false },
+  { id: 72, emoji: '📡', title: 'Инженер сетей / Cisco', company: 'Transtelecom KZ', salary: '300–500k ₸', location: 'Алматы', type: 'fulltime', tags: ['cisco', 'сети', 'инженер', 'network', 'routing', 'switching', 'it'], risky: false },
+
+  // ── Переводы / Языки ──
+  { id: 73, emoji: '🗣️', title: 'Переводчик (РУ-КЗ-ANG)', company: 'МИД Казахстана', salary: '200–380k ₸', location: 'Астана', type: 'fulltime', tags: ['переводчик', 'английский', 'казахский', 'перевод', 'язык', 'документы'], risky: false },
+  { id: 74, emoji: '📖', title: 'Технический переводчик', company: 'Chevron KZ', salary: '280–480k ₸', location: 'Атырау', type: 'fulltime', tags: ['переводчик', 'технический', 'английский', 'нефть', 'документация', 'перевод'], risky: false },
+
+  // ── PR / Реклама ──
+  { id: 75, emoji: '📣', title: 'PR-менеджер / Пресс-секретарь', company: 'Казахстан Темір Жолы', salary: '280–420k ₸', location: 'Астана', type: 'fulltime', tags: ['pr', 'пресс', 'коммуникации', 'медиа', 'тексты', 'маркетинг'], risky: false },
+  { id: 76, emoji: '📺', title: 'Менеджер по рекламе', company: 'Первый Канал KZ', salary: '200–340k ₸', location: 'Алматы', type: 'fulltime', tags: ['реклама', 'маркетинг', 'медиа', 'клиенты', 'продажи', 'контент'], risky: false },
+
+  // ── Спорт / Фитнес ──
+  { id: 77, emoji: '🏋️', title: 'Тренер по фитнесу', company: 'World Class KZ', salary: '180–380k ₸', location: 'Алматы', type: 'parttime', tags: ['тренер', 'фитнес', 'спорт', 'тренировки', 'здоровье', 'клиенты'], risky: false },
+  { id: 78, emoji: '⚽', title: 'Тренер по футболу (детский)', company: 'ФК Кайрат Академия', salary: '160–280k ₸', location: 'Алматы', type: 'fulltime', tags: ['тренер', 'футбол', 'дети', 'спорт', 'педагогика', 'обучение'], risky: false },
+
+  // ── Нефть и газ (Атырау / Актау) ──
+  { id: 79, emoji: '⛽', title: 'Оператор нефтяной установки', company: 'Тенгизшевройл', salary: '400–700k ₸', location: 'Атырау', type: 'fulltime', tags: ['нефть', 'газ', 'оператор', 'установка', 'технолог', 'промышленность'], risky: false },
+  { id: 80, emoji: '🔩', title: 'Инженер-механик (нефтяной отрасли)', company: 'NCOC', salary: '500–900k ₸', location: 'Атырау', type: 'fulltime', tags: ['механик', 'инженер', 'нефть', 'газ', 'оборудование', 'технический'], risky: false },
+
+  // ── Образование (регионы) ──
+  { id: 81, emoji: '🧑‍🏫', title: 'Учитель начальных классов', company: 'НИШ Шымкент', salary: '180–280k ₸', location: 'Шымкент', type: 'fulltime', tags: ['учитель', 'начальная школа', 'педагогика', 'образование', 'дети', 'обучение'], risky: false },
+  { id: 82, emoji: '🎨', title: 'Учитель рисования / ИЗО', company: 'Детская студия Art Almaty', salary: '130–220k ₸', location: 'Алматы', type: 'parttime', tags: ['учитель', 'рисование', 'изо', 'искусство', 'дети', 'творчество'], risky: false },
+
+  // ── Авто / Сервис ──
+  { id: 83, emoji: '🔧', title: 'Автомеханик / Слесарь', company: 'Астана Моторс Сервис', salary: '200–380k ₸', location: 'Алматы', type: 'fulltime', tags: ['автомеханик', 'слесарь', 'авто', 'ремонт', 'диагностика', 'техобслуживание'], risky: false },
+  { id: 84, emoji: '🚘', title: 'Менеджер по продажам авто', company: 'KAMAZ KZ', salary: '250–500k ₸+', location: 'Астана', type: 'fulltime', tags: ['авто', 'продажи', 'менеджер', 'клиенты', 'переговоры', 'CRM'], risky: false },
+
+  // ── Социальная сфера / НКО ──
+  { id: 85, emoji: '🤝', title: 'Социальный работник', company: 'Акимат г. Алматы', salary: '130–200k ₸', location: 'Алматы', type: 'fulltime', tags: ['социальный', 'работник', 'помощь', 'государство', 'общество', 'документы'], risky: false },
+  { id: 86, emoji: '🌿', title: 'Эколог / Специалист по ОС', company: 'Самрук-Казына', salary: '260–420k ₸', location: 'Астана', type: 'fulltime', tags: ['эколог', 'экология', 'охрана среды', 'инженер', 'отчётность', 'природа'], risky: false },
+
+  // ── Пищевая промышленность / Производство ──
+  { id: 87, emoji: '🏭', title: 'Технолог пищевого производства', company: 'Рахат АО', salary: '220–350k ₸', location: 'Алматы', type: 'fulltime', tags: ['технолог', 'производство', 'пищевое', 'качество', 'контроль', 'гост'], risky: false },
 ];
 
 /* compute chance based on profile skills */
@@ -229,23 +357,63 @@ const DEMO_PROFILE = {
   isNew: false, resumeScore: 72,
 };
 
-/* ── AI RESPONSES (free-form after onboarding) ── */
-const aiReplies = {
-  ru: [
-    '🎯 По твоему профилю я вижу **{topJob}** с высоким шансом. Навыки **{topSkill}** очень востребованы прямо сейчас!',
-    '📈 Твоё резюме набирает **{score} из 100** по индексу конкурентности. Добавь GitHub — поднимешь до 85+.',
-    '🔥 В тренде: **React, TypeScript, Python, SQL**. У тебя уже есть часть — отличный старт!',
-    '💰 По твоему профилю рыночная зарплата **{salary}** в месяц. После года опыта вырастет на 40–60%.',
-    '✅ Совет: добавь в резюме **pet-проекты и сертификаты** — это поднимет твой шанс на 15–25%.',
-  ],
-  kz: [
-    '🎯 Профиліңіз бойынша **{topJob}** жоғары мүмкіндікпен бар. **{topSkill}** дағдылары қазір өте сұранысқа ие!',
-    '📈 Түйіндемеңіз **100-ден {score}** ұпай жинайды. GitHub сілтемесін қосыңыз — 85+ болады.',
-    '🔥 Трендте: **React, TypeScript, Python, SQL**. Сізде бір бөлігі бар — тамаша бастама!',
-    '💰 Профиліңіз бойынша нарықтық жалақы айына **{salary}**. Бір жыл тәжірибеден кейін 40–60% өседі.',
-    '✅ Кеңес: **pet-жобалар мен сертификаттар** қосыңыз — мүмкіндіктеріңіз 15–25%-ға өседі.',
-  ]
-};
+/* ── GEMINI AI CONFIG ── */
+const GEMINI_API_KEY = 'AIzaSyDD4EoOhDpkd4M1OM1DBxppFTN4j9URofs';
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+// Chat history for context-aware conversations
+let chatHistory = [];
+
+function buildSystemPrompt() {
+  const topVacancies = vacancies.slice(0, 3).map(v => `${v.title} в ${v.company} (${v.chance}% совпадение)`).join(', ');
+  return `Ты — FindJob AI, умный карьерный ассистент платформы FindJob для студентов и соискателей в Казахстане.
+
+Профиль пользователя:
+- Имя: ${userProfile.name || 'не указано'}
+- Желаемая должность: ${userProfile.role || 'не указана'}
+- Университет: ${userProfile.university || 'не указан'}
+- Специальность: ${userProfile.specialization || 'не указана'}
+- Навыки: ${userProfile.skills.join(', ') || 'не указаны'}
+- Опыт: ${userProfile.experience || 'нет'}
+- Желаемая зарплата: ${userProfile.salary || 'не указана'}
+- Индекс резюме: ${userProfile.resumeScore}/100
+- Топ вакансии по совпадению: ${topVacancies || 'пока не подобраны'}
+
+Правила:
+- Отвечай кратко, по делу, дружелюбно (2-4 предложения)
+- Используй эмодзи для живости
+- Давай конкретные советы по карьере в Казахстане
+- Если спрашивают о вакансиях — ссылайся на найденные совпадения
+- Отвечай на том языке, на котором пишет пользователь (русский или казахский)
+- НЕ придумывай выдуманные компании или зарплаты — опирайся на реальный рынок КЗ`;
+}
+
+async function callGemini(userText) {
+  // Add user message to history
+  chatHistory.push({ role: 'user', parts: [{ text: userText }] });
+  // Keep last 10 messages to avoid token overuse
+  if (chatHistory.length > 10) chatHistory = chatHistory.slice(-10);
+
+  const body = {
+    system_instruction: { parts: [{ text: buildSystemPrompt() }] },
+    contents: chatHistory,
+    generationConfig: { temperature: 0.8, maxOutputTokens: 400 }
+  };
+
+  const res = await fetch(GEMINI_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+
+  if (!res.ok) throw new Error(`Gemini error: ${res.status}`);
+  const data = await res.json();
+  const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '🤔 Не смог получить ответ, попробуй ещё раз.';
+
+  // Add AI response to history
+  chatHistory.push({ role: 'model', parts: [{ text: reply }] });
+  return reply;
+}
 
 /* ══════════════════════════════════════════
    WELCOME OVERLAY
@@ -267,6 +435,7 @@ function startNewAccount() {
     name: '', initials: '?', role: '', university: '', specialization: '',
     skills: [], experience: '', salary: '', about: '', isNew: true, resumeScore: 0
   };
+  chatHistory = []; // reset AI memory
   hideWelcome();
   navigateTo('home');
   updateSidebarUser();
@@ -287,6 +456,7 @@ function startNewAccount() {
 
 function startDemoAccount() {
   userProfile = { ...DEMO_PROFILE };
+  chatHistory = []; // reset AI memory
   hideWelcome();
   rebuildVacancies();
   renderVacancies();
@@ -413,6 +583,7 @@ function finishOnboarding() {
   updateSidebarUser();
   updateResumeFromProfile();
   renderVacancies();
+  initVacancyPage();
 
   const topV = vacancies[0];
   const topSkill = userProfile.skills[0] || 'React';
@@ -507,6 +678,7 @@ function navigateTo(page) {
   currentPage = page;
   updateTopbarTitle();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (page === 'vacancies') initVacancyPage();
 }
 
 function updateTopbarTitle() {
@@ -581,22 +753,30 @@ function showTyping() {
 }
 function hideTyping() { document.getElementById('typing-indicator')?.remove(); }
 
-function sendMessage() {
+async function sendMessage() {
   if (onboardingActive) { handleOnboardingInput(); return; }
   const input = document.getElementById('chat-input');
+  const btn = document.getElementById('chat-send-btn');
   const text = input.value.trim();
   if (!text) return;
   addMessage(text, 'user');
   input.value = ''; input.style.height = 'auto';
+  input.disabled = true; if (btn) btn.disabled = true;
   showTyping();
-  const replies = aiReplies[currentLang];
-  const raw = replies[Math.floor(Math.random() * replies.length)];
-  const topJob = vacancies[0]?.title || 'Frontend Developer';
-  const topSkill = userProfile.skills[0] || 'JavaScript';
-  const reply = raw.replace('{topJob}', topJob).replace('{topSkill}', topSkill)
-    .replace('{score}', userProfile.resumeScore || 72)
-    .replace('{salary}', userProfile.salary || 'от 300 000 ₸');
-  setTimeout(() => { hideTyping(); addMessage(reply, 'ai'); }, 1600 + Math.random() * 900);
+  try {
+    const reply = await callGemini(text);
+    hideTyping();
+    addMessage(reply, 'ai');
+  } catch (err) {
+    hideTyping();
+    const fallback = currentLang === 'ru'
+      ? '⚠️ Не смог подключиться к AI. Проверь интернет и попробуй снова.'
+      : '⚠️ AI-ға қосыла алмадым. Интернетті тексеріп, қайта көріңіз.';
+    addMessage(fallback, 'ai');
+    console.error('Gemini error:', err);
+  } finally {
+    input.disabled = false; if (btn) btn.disabled = false; input.focus();
+  }
 }
 
 function handleOnboardingInput() {
@@ -635,50 +815,79 @@ function renderVacancies() {
   const container = document.getElementById('vacancies-grid');
   if (!container) return;
 
+  const adv = getAdvancedFilters();
+  const catTags = activeCategory ? (categoryTagMap[activeCategory] || []) : [];
+
   const filtered = vacancies.filter(v => {
+    // Search
     const ms = !searchVal || v.title.toLowerCase().includes(searchVal) || v.company.toLowerCase().includes(searchVal);
+    // Risk
     const mr = riskMode === 'risk' || !v.risky;
-    return ms && mr;
+    // Category
+    const mc = !activeCategory || catTags.some(tag =>
+      v.tags.some(vt => vt.toLowerCase().includes(tag)) ||
+      v.title.toLowerCase().includes(tag)
+    );
+    // City
+    const mCity = !adv.city || (adv.city === 'remote' ? v.type === 'remote' : v.location.includes(adv.city));
+    // Profession free text
+    const mProf = !adv.prof || v.title.toLowerCase().includes(adv.prof) || v.tags.some(tg => tg.includes(adv.prof));
+    return ms && mr && mc && mCity && mProf;
   });
+
+  // Update count label
+  const countEl = document.getElementById('vacancy-count-label');
+  if (countEl) countEl.textContent = `Найдено: ${filtered.length} из ${vacancies.length}`;
+
+  // Count active advanced filters
+  const activeCount = [adv.city, adv.exp, adv.prof].filter(Boolean).length;
+  const fcEl = document.getElementById('filter-count');
+  if (fcEl) fcEl.textContent = activeCount > 0 ? activeCount : '';
 
   const typeMap = { fulltime: t.fullTime, parttime: t.partTime, remote: t.remote, hybrid: t.hybrid };
 
-  container.innerHTML = filtered.map(v => {
-    const cc = chanceClass(v.chance);
-    return `<div class="vacancy-card ${v.risky ? 'risky' : 'safe'}">
-      <div class="vacancy-top">
-        <div class="company-logo">${v.emoji}</div>
-        <div class="vacancy-info">
-          <div class="vacancy-title">${v.title}</div>
-          <div class="vacancy-company">${v.company}</div>
+  container.innerHTML = filtered.length === 0
+    ? `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted)">
+        <div style="font-size:36px;margin-bottom:12px">🔍</div>
+        <div>По выбранным фильтрам вакансий не найдено</div>
+       </div>`
+    : filtered.map(v => {
+      const cc = chanceClass(v.chance);
+      return `<div class="vacancy-card ${v.risky ? 'risky' : 'safe'}">
+        <div class="vacancy-top">
+          <div class="company-logo">${v.emoji}</div>
+          <div class="vacancy-info">
+            <div class="vacancy-title">${v.title}</div>
+            <div class="vacancy-company">${v.company}</div>
+          </div>
+          <div class="vacancy-salary">${v.salary}</div>
         </div>
-        <div class="vacancy-salary">${v.salary}</div>
-      </div>
-      <div class="chips-row">
-        <span class="chip">${v.location}</span>
-        <span class="chip ${v.risky ? 'chip-red' : 'chip-green'}">${typeMap[v.type] || v.type}</span>
-        ${v.risky ? '<span class="chip chip-red">🔥 Риск</span>' : '<span class="chip chip-green">🛡️ Надёжно</span>'}
-      </div>
-      <div class="chance-meter">
-        <div class="chance-row">
-          <span class="chance-label">${t.chanceLabel}</span>
-          <span class="chance-pct ${pctClass(v.chance)}">${v.chance}%</span>
+        <div class="chips-row">
+          <span class="chip">${v.location}</span>
+          <span class="chip ${v.risky ? 'chip-red' : 'chip-green'}">${typeMap[v.type] || v.type}</span>
+          ${v.risky ? '<span class="chip chip-red">🔥 Риск</span>' : '<span class="chip chip-green">🛡️ Надёжно</span>'}
         </div>
-        <div class="chance-bar-wrap">
-          <div class="chance-fill ${cc}" style="width:0%" data-pct="${v.chance}"></div>
+        <div class="chance-meter">
+          <div class="chance-row">
+            <span class="chance-label">${t.chanceLabel}</span>
+            <span class="chance-pct ${pctClass(v.chance)}">${v.chance}%</span>
+          </div>
+          <div class="chance-bar-wrap">
+            <div class="chance-fill ${cc}" style="width:0%" data-pct="${v.chance}"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+            <span class="chance-badge ${chanceBadgeClass(v.chance)}">🎯 ${v.chance}%</span>
+            <button class="btn btn-primary btn-sm" onclick="handleApply(${v.id})">${t.applyBtn}</button>
+          </div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
-          <span class="chance-badge ${chanceBadgeClass(v.chance)}">🎯 ${v.chance}%</span>
-          <button class="btn btn-primary btn-sm" onclick="handleApply(${v.id})">${t.applyBtn}</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+      </div>`;
+    }).join('');
 
   setTimeout(() => {
     document.querySelectorAll('.chance-fill[data-pct]').forEach(el => { el.style.width = el.dataset.pct + '%'; });
   }, 50);
 }
+
 
 function handleApply(id) {
   const v = vacancies.find(x => x.id === id);
@@ -686,6 +895,78 @@ function handleApply(id) {
   showToast(currentLang === 'ru'
     ? `✅ Отклик отправлен в ${v.company}!`
     : `✅ ${v.company} компаниясына өтінім жіберілді!`);
+}
+
+/* ── Category / Filter state ── */
+let activeCategory = '';
+const categoryTagMap = {
+  it: ['javascript', 'react', 'python', 'frontend', 'backend', 'devops', 'typescript', 'html', 'css', '1с', 'java', 'kotlin'],
+  design: ['figma', 'ui', 'ux', 'photoshop', 'illustrator', 'дизайн', 'design'],
+  marketing: ['маркетинг', 'smm', 'контент', 'реклама', 'seo', 'pr', 'таргет'],
+  finance: ['бухгалтер', 'финансы', '1с', 'налоги', 'аудит', 'accounting'],
+  medicine: ['врач', 'медсестра', 'фармацевт', 'стоматолог', 'медицин', 'хирург', 'педиатр'],
+  education: ['учитель', 'преподаватель', 'репетитор', 'тренер', 'педагог'],
+  construction: ['строитель', 'прораб', 'инженер', 'архитектор', 'сметчик', 'геодезист'],
+  food: ['повар', 'кулинар', 'кондитер', 'официант', 'шеф'],
+  logistics: ['водитель', 'логистика', 'склад', 'курьер', 'экспедитор'],
+  beauty: ['косметолог', 'парикмахер', 'маникюр', 'визажист', 'массаж'],
+  sport: ['тренер', 'фитнес', 'спорт', 'инструктор', 'футбол'],
+  oil: ['нефть', 'газ', 'геолог', 'бурение', 'оператор', 'техник'],
+};
+
+function filterByCategory(cat) {
+  activeCategory = cat;
+  document.querySelectorAll('.pop-chip').forEach(btn => btn.classList.remove('active'));
+  const clicked = [...document.querySelectorAll('.pop-chip')].find(b => {
+    if (cat === '') return b.textContent.trim() === 'Все';
+    return b.getAttribute('onclick')?.includes(`'${cat}'`);
+  });
+  if (clicked) clicked.classList.add('active');
+  renderVacancies();
+}
+
+function applyFilters() { renderVacancies(); }
+
+function resetFilters() {
+  ['f-lang', 'f-age', 'f-exp', 'f-city'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  const fp = document.getElementById('f-prof');
+  if (fp) fp.value = '';
+  document.getElementById('filter-count').textContent = '';
+  renderVacancies();
+}
+
+function getAdvancedFilters() {
+  return {
+    city: document.getElementById('f-city')?.value || '',
+    exp: document.getElementById('f-exp')?.value || '',
+    prof: (document.getElementById('f-prof')?.value || '').toLowerCase().trim(),
+  };
+}
+
+function initVacancyPage() {
+  /* Vacancy of the day — pick top match */
+  const top = vacancies[0];
+  if (top) {
+    const vtEl = document.getElementById('vod-title');
+    const vcEl = document.getElementById('vod-company');
+    const vsEl = document.getElementById('vod-salary');
+    const vchEl = document.getElementById('vod-chance');
+    if (vtEl) vtEl.textContent = `${top.title} — ${top.company}`;
+    if (vcEl) vcEl.textContent = `📍 ${top.location} · ${top.company}`;
+    if (vsEl) vsEl.textContent = top.salary;
+    if (vchEl) vchEl.textContent = `🎯 ${top.chance}%`;
+    const btn = document.querySelector('#vac-of-day .btn');
+    if (btn) btn.setAttribute('onclick', `handleApply(${top.id})`);
+  }
+  /* News date */
+  const nd = document.getElementById('news-date');
+  if (nd) {
+    const d = new Date();
+    nd.textContent = d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
 }
 
 /* ══════════════════════════════════════════
@@ -805,7 +1086,8 @@ function showToast(msg) {
   let t = document.getElementById('toast');
   if (!t) {
     t = document.createElement('div'); t.id = 'toast';
-    t.style.cssText = 'position:fixed;bottom:28px;right:28px;z-index:9999;background:rgba(124,58,237,0.95);backdrop-filter:blur(20px);color:white;padding:14px 22px;border-radius:12px;font-size:14px;font-weight:500;max-width:360px;border:1px solid rgba(168,85,247,0.5);box-shadow:0 8px 32px rgba(124,58,237,0.3);transform:translateY(100px);opacity:0;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);font-family:Inter,sans-serif;';
+    t.className = 'toast';
+    t.style.cssText = 'position:fixed;bottom:28px;right:28px;z-index:9999;max-width:360px;transform:translateY(100px);opacity:0;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);font-family:Inter,sans-serif;';
     document.body.appendChild(t);
   }
   t.textContent = msg;
