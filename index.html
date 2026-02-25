@@ -4,939 +4,512 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FindJob — Поиск работы по шансам</title>
-    <meta name="description"
-        content="FindJob: платформа для студентов. Найди работу не по фильтрам, а по шансам. AI-оценка профиля, вакансии с % совпадения." />
+    <title>FindJob — Работа под твою личность</title>
+    <meta name="description" content="AI-платформа подбора работы по тесту личности MBTI для граждан Казахстана" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- ═══════════════════ WELCOME OVERLAY ═══════════════════ -->
-    <div id="welcome-overlay" class="welcome-overlay">
-        <div class="welcome-box">
-            <div class="welcome-logo">⚡ FindJob</div>
-            <div class="welcome-tagline" data-t="heroSub">Ищем работу не по фильтрам, а по шансам</div>
-            <div class="welcome-title" data-t="welcomeTitle">Добро пожаловать в FindJob</div>
-            <div class="welcome-sub" data-t="welcomeSub">Ищем работу не по фильтрам, а по шансам</div>
-            <div class="welcome-cards">
-                <div class="welcome-option primary-option" onclick="startNewAccount()">
-                    <div class="welcome-opt-icon new-icon">🚀</div>
-                    <div>
-                        <div class="welcome-opt-title" data-t="newAccount">Новый аккаунт</div>
-                        <div class="welcome-opt-sub" data-t="newAccountSub">Пройти опрос и создать резюме</div>
-                    </div>
+    <!-- ══ NAVBAR ══ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo" onclick="navigateTo('home')">
+            <span class="logo-icon">⚡</span>
+            <span class="logo-text">FindJob</span>
+        </div>
+        <div class="nav-links" id="nav-links">
+            <a class="nav-link active" data-page="home" onclick="navigateTo('home')" data-t="navHome">Главная</a>
+            <a class="nav-link" data-page="resume" onclick="navigateTo('resume')" data-t="navResume">Резюме</a>
+            <a class="nav-link" data-page="courses" onclick="navigateTo('courses')" data-t="navCourses">Курсы</a>
+            <a class="nav-link" data-page="world" onclick="navigateTo('world')" data-t="navWorld">Мировая арена</a>
+            <a class="nav-link cta-link" data-page="quiz" onclick="navigateTo('quiz')" data-t="navQuiz">🧠 Анкета</a>
+        </div>
+        <div class="nav-right">
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+                <button class="lang-btn" onclick="setLang('kz')">KZ</button>
+            </div>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════════
+     PAGE 1 — ГЛАВНАЯ
+══════════════════════════════════════════ -->
+    <section id="page-home" class="page active">
+
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-bg-grid"></div>
+            <div class="hero-content">
+                <div class="hero-tag" data-t="heroTag">🇰🇿 Платформа для граждан Казахстана</div>
+                <h1 class="hero-title" data-t="heroTitle">Работа под<br><span class="gradient-text">твою личность</span>
+                </h1>
+                <p class="hero-sub" data-t="heroSub">Пройди тест личности MBTI и получи список вакансий, где именно ты —
+                    идеальный кандидат.</p>
+                <div class="hero-btns">
+                    <button class="btn btn-primary btn-lg" onclick="navigateTo('quiz')" data-t="heroCta1">Пройти
+                        тест</button>
+                    <button class="btn btn-outline btn-lg" onclick="navigateTo('resume')" data-t="heroCta2">Создать
+                        резюме</button>
                 </div>
-                <div class="welcome-option" onclick="startDemoAccount()">
-                    <div class="welcome-opt-icon demo-icon">👤</div>
-                    <div>
-                        <div class="welcome-opt-title" data-t="demoAccount">Войти как студент</div>
-                        <div class="welcome-opt-sub" data-t="demoAccountSub">Демо-профиль с готовыми данными</div>
-                    </div>
-                </div>
-                <div class="welcome-option" onclick="startDemoEmployer()">
-                    <div class="welcome-opt-icon employer-icon">🏢</div>
-                    <div>
-                        <div class="welcome-opt-title" data-t="demoEmployer">Войти как работодатель</div>
-                        <div class="welcome-opt-sub" data-t="demoEmployerSub">Кабинет HR для размещения вакансий</div>
-                    </div>
+                <div class="hero-stats">
+                    <div class="hero-stat"><span class="hero-stat-val">16</span><span class="hero-stat-lbl"
+                            data-t="hstat1">типов личности</span></div>
+                    <div class="hero-stat-div"></div>
+                    <div class="hero-stat"><span class="hero-stat-val">159+</span><span class="hero-stat-lbl"
+                            data-t="hstat2">вакансий</span></div>
+                    <div class="hero-stat-div"></div>
+                    <div class="hero-stat"><span class="hero-stat-val">95%</span><span class="hero-stat-lbl"
+                            data-t="hstat3">точность матча</span></div>
                 </div>
             </div>
-            <div style="margin-top:20px">
-                <div class="lang-toggle" style="display:inline-flex">
-                    <button class="lang-btn active" data-lang="ru" onclick="setLang('ru')">RU</button>
-                    <button class="lang-btn" data-lang="kz" onclick="setLang('kz')">KZ</button>
+            <div class="hero-visual">
+                <div class="mbti-wheel">
+                    <div class="mbti-card" style="--c:#6366F1">INTJ</div>
+                    <div class="mbti-card" style="--c:#8B5CF6">ENFP</div>
+                    <div class="mbti-card" style="--c:#EC4899">ESFJ</div>
+                    <div class="mbti-card" style="--c:#10B981">ISTP</div>
+                    <div class="mbti-card" style="--c:#F59E0B">ESTJ</div>
+                    <div class="mbti-card" style="--c:#3B82F6">INFP</div>
+                    <div class="mbti-card" style="--c:#EF4444">ENTP</div>
+                    <div class="mbti-card" style="--c:#14B8A6">ISFJ</div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="app-shell">
+        <!-- How it works -->
+        <div class="section-wrap">
+            <div class="section-label" data-t="howLabel">КАК ЭТО РАБОТАЕТ</div>
+            <h2 class="section-title" data-t="howTitle">Три шага до идеальной работы</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <div class="step-icon">🧠</div>
+                    <div class="step-title" data-t="step1t">Тест личности</div>
+                    <div class="step-desc" data-t="step1d">Проходишь 16 вопросов MBTI — узнаёшь свой тип личности и
+                        сильные стороны.</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <div class="step-icon">🎯</div>
+                    <div class="step-title" data-t="step2t">Матч с вакансиями</div>
+                    <div class="step-desc" data-t="step2d">Алгоритм сравнивает твой тип с требованиями работодателей и
+                        показывает процент совпадения.</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <div class="step-icon">🚀</div>
+                    <div class="step-title" data-t="step3t">Откликнуться</div>
+                    <div class="step-desc" data-t="step3d">Отправляешь резюме, созданное под твой тип личности, и
+                        получаешь приглашения на интервью.</div>
+                </div>
+            </div>
+        </div>
 
-        <!-- sidebar: kept hidden so JS selectors still work -->
-        <aside class="sidebar" style="display:none" aria-hidden="true">
-            <div id="sidebar-avatar" class="avatar">?</div>
-            <div id="sidebar-user-name"></div>
-            <div id="sidebar-user-role"></div>
-        </aside>
+        <!-- Personality types preview -->
+        <div class="section-wrap">
+            <div class="section-label" data-t="typesLabel">16 ТИПОВ ЛИЧНОСТИ</div>
+            <h2 class="section-title" data-t="typesTitle">Найди себя</h2>
+            <div class="types-grid" id="types-grid"></div>
+        </div>
 
-        <!-- ═══════════════════ MAIN ═══════════════════ -->
-        <main class="main-content">
-            <header class="topbar">
-                <div id="onboarding-bar" class="onboarding-bar">
-                    <span class="onboarding-bar-label">🤖 FindJob AI опрос</span>
-                    <div class="onboarding-progress">
-                        <div id="onboarding-fill" class="onboarding-fill" style="width:0%"></div>
-                    </div>
-                    <span id="onboarding-step-text" class="onboarding-step-text">0 / 7</span>
+        <!-- For employers -->
+        <div class="section-wrap">
+            <div class="employer-banner">
+                <div>
+                    <div class="section-label" style="color:#A78BFA">ДЛЯ РАБОТОДАТЕЛЕЙ</div>
+                    <h2 class="section-title" style="margin:8px 0 12px" data-t="empBannerTitle">Найди сотрудника<br>с
+                        нужным характером</h2>
+                    <p style="color:var(--text-secondary);max-width:480px" data-t="empBannerDesc">Укажи желаемые черты
+                        личности — система подберёт кандидатов с максимальным совпадением по MBTI.</p>
+                    <button class="btn btn-primary btn-lg" style="margin-top:20px"
+                        onclick="navigateTo('quiz');setQuizMode('employer')" data-t="empBannerCta">Найти
+                        кандидатов</button>
                 </div>
-                <div class="topbar-row">
-                    <!-- Logo -->
-                    <div class="topbar-logo">⚡ FindJob</div>
-                    <!-- Horizontal Nav -->
-                    <nav class="topbar-nav">
-                        <div class="nav-item active" data-page="home"><span class="nav-icon">🏠</span><span
-                                data-t="home">Главная</span></div>
-                        <div class="nav-item" data-page="resume"><span class="nav-icon">📄</span><span
-                                data-t="resume">Резюме</span></div>
-                        <div class="nav-item" data-page="vacancies"><span class="nav-icon">🎯</span><span
-                                data-t="vacancies">Вакансии</span><span class="nav-badge">87</span></div>
-                        <div class="nav-item" data-page="courses"><span class="nav-icon">📚</span><span
-                                data-t="courses">Курсы</span></div>
-                        <div class="nav-item" data-page="world"><span class="nav-icon">🌍</span><span
-                                data-t="world">Мировые</span></div>
-                        <div class="nav-item" data-page="seeker"><span class="nav-icon">👤</span><span
-                                data-t="seeker">Мой кабинет</span></div>
-                        <div class="nav-item" data-page="employer" style="position:relative"><span
-                                class="nav-icon">🏢</span><span data-t="employer">Работодатель</span><span
-                                class="notif-dot"></span></div>
-                    </nav>
-                    <!-- Right controls -->
-                    <div class="topbar-right">
-                        <div class="lang-toggle">
-                            <button class="lang-btn active" data-lang="ru" onclick="setLang('ru')">RU</button>
-                            <button class="lang-btn" data-lang="kz" onclick="setLang('kz')">KZ</button>
-                        </div>
-                        <div id="topbar-avatar" class="avatar">?</div>
-                    </div>
-                </div>
-            </header>
+                <div class="employer-banner-visual">🏢<br><span
+                        style="font-size:14px;color:var(--text-secondary)">Kolesa · Kaspi · Air Astana</span></div>
+            </div>
+        </div>
 
-            <!-- ══ HOME / AI CHAT ══ -->
-            <section id="page-home" class="page active">
-                <div class="hero-banner">
-                    <div class="hero-tag" data-t="heroTag">🚀 AI-поиск нового поколения</div>
-                    <div class="hero-title">Ищи работу не по фильтрам,<br><span>а по шансам</span></div>
-                    <div class="hero-sub" data-t="heroSub">Мы оцениваем профиль и находим вакансии с реальным шансом.
-                    </div>
-                    <div class="hero-actions">
-                        <button class="btn btn-primary" onclick="navigateTo('vacancies')" data-t="heroCta1">Начать
-                            поиск</button>
-                        <button class="btn btn-ghost" onclick="navigateTo('resume')" data-t="heroCta2">Моё
-                            резюме</button>
-                    </div>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">📋</div>
-                        <div class="stat-value" id="stat-vacancies">0</div>
-                        <div class="stat-label" data-t="stat1">Вакансий</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🏢</div>
-                        <div class="stat-value" id="stat-employers">0</div>
-                        <div class="stat-label" data-t="stat2">Работодателей</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🎓</div>
-                        <div class="stat-value" id="stat-students">0</div>
-                        <div class="stat-label" data-t="stat3">Студентов</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">📨</div>
-                        <div class="stat-value" id="stat-responses">0</div>
-                        <div class="stat-label" data-t="stat4">Откликов</div>
-                    </div>
-                </div>
-                <div class="chat-layout">
-                    <!-- Main chat -->
-                    <div class="chat-main">
-                        <div class="chat-header">
-                            <div class="ai-avatar">🤖</div>
-                            <div>
-                                <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px"
-                                    data-t="chatTitle">FindJob AI</div>
-                                <div class="ai-status">
-                                    <div class="status-dot"></div><span data-t="chatOnline">Онлайн</span>
-                                </div>
-                            </div>
-                            <button class="btn btn-ghost btn-sm" style="margin-left:auto"
-                                onclick="navigateTo('vacancies')">🎯 Вакансии</button>
-                        </div>
-                        <div class="chat-messages" id="chat-messages"></div>
-                        <div class="chat-input-row">
-                            <textarea class="chat-input" id="chat-input" rows="1" data-tp="chatPlaceholder"
-                                placeholder="Напиши вопрос…" disabled></textarea>
-                            <button class="chat-send-btn" id="chat-send-btn" disabled>➤</button>
-                        </div>
-                    </div>
-                    <!-- Sidebar -->
-                    <div style="display:flex;flex-direction:column;gap:16px">
-                        <div class="chat-sidebar-card">
-                            <div class="chat-sidebar-title" data-t="promptsTitle">💡 Быстрые вопросы</div>
-                            <div class="prompt-chip" data-t="p1">Какие вакансии мне подходят?</div>
-                            <div class="prompt-chip" data-t="p2">Как улучшить резюме?</div>
-                            <div class="prompt-chip" data-t="p3">Какие навыки в тренде?</div>
-                            <div class="prompt-chip" data-t="p4">Сколько я стою на рынке?</div>
-                        </div>
-                        <div class="chat-sidebar-card">
-                            <div class="chat-sidebar-title" data-t="statsTitle">📊 Мой профиль</div>
-                            <div class="progress-wrap" style="margin-top:0">
-                                <div class="progress-label"><span>Резюме</span><span id="bar-resume-label">—</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill fill-violet" id="bar-resume" style="width:0%"></div>
-                                </div>
-                            </div>
-                            <div class="progress-wrap" style="margin-top:8px">
-                                <div class="progress-label"><span>Навыки</span><span id="bar-skills-label">—</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill fill-green" id="bar-skills" style="width:0%"></div>
-                                </div>
-                            </div>
-                            <div class="progress-wrap" style="margin-top:8px">
-                                <div class="progress-label"><span>Опыт</span><span id="bar-exp-label">—</span></div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill fill-gold" id="bar-exp" style="width:0%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat-sidebar-card">
-                            <div class="chat-sidebar-title">🔥 Топ совпадений</div>
-                            <div id="top-match-list" style="display:flex;flex-direction:column;gap:10px">
-                                <div style="font-size:12px;color:var(--text-muted)">Создайте профиль, чтобы увидеть
-                                    совпадения</div>
-                            </div>
-                            <button class="btn btn-ghost btn-sm" style="margin-top:12px;width:100%"
-                                onclick="navigateTo('vacancies')">Смотреть все →</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo">⚡ FindJob</div>
+            <div class="footer-tagline" data-t="footerTag">Работа под твою личность · Казахстан 2025</div>
+            <div class="footer-links">
+                <a href="mailto:hello@findjob.kz">hello@findjob.kz</a>
+                <a href="#" onclick="return false">Telegram</a>
+                <a href="#" onclick="return false">Instagram</a>
+            </div>
+        </footer>
 
-            <!-- ══ RESUME ══ -->
-            <section id="page-resume" class="page">
-                <div class="section-header mb-24">
-                    <div class="section-title" data-t="resumeTitle">Моё резюме</div>
-                    <div style="display:flex;gap:10px">
-                        <button class="btn btn-ghost btn-sm" data-t="downloadCV">⬇ Скачать PDF</button>
-                        <button class="btn btn-primary btn-sm" onclick="setTab('resume','edit')" data-t="editResume">✏️
-                            Редактировать</button>
-                    </div>
-                </div>
-                <div class="tab-bar">
-                    <button class="tab-btn active" data-tab="view" onclick="setTab('resume','view')">👁
-                        Просмотр</button>
-                    <button class="tab-btn" data-tab="edit" onclick="setTab('resume','edit')">✏️ Редактирование</button>
-                </div>
-                <!-- VIEW -->
-                <div data-tab="view" class="tab-content resume-layout">
-                    <div class="resume-card">
-                        <div class="resume-profile">
-                            <div class="resume-avatar">👨‍💻</div>
-                            <div>
-                                <div class="resume-name" id="resume-display-name">—</div>
-                                <div class="resume-role" id="resume-display-role">—</div>
-                                <div class="chips-row">
-                                    <span class="chip chip-green" data-t="available">🟢 Готов к работе</span>
-                                    <span class="chip" id="resume-display-uni">—</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="resume-section">
-                            <div class="resume-section-title" data-t="aboutSection">О себе</div>
-                            <p id="resume-display-about"
-                                style="font-size:14px;color:var(--text-secondary);line-height:1.7">Заполните профиль с
-                                помощью AI-опроса на главной странице.</p>
-                        </div>
-                        <div class="resume-section">
-                            <div class="resume-section-title" data-t="expSection">Опыт работы</div>
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <div class="timeline-dot"></div>
-                                    <div class="timeline-content">
-                                        <div class="timeline-title" id="resume-display-exp">—</div>
-                                        <div class="timeline-sub" id="resume-display-spec">—</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="resume-section">
-                            <div class="resume-section-title" data-t="eduSection">Образование</div>
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <div class="timeline-dot" style="background:var(--green)"></div>
-                                    <div class="timeline-content">
-                                        <div class="timeline-title" id="resume-display-uni2">—</div>
-                                        <div class="timeline-sub">2021–2025</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="resume-section">
-                            <div class="resume-section-title" data-t="skillsSection">Навыки</div>
-                            <div class="chips-row" id="resume-skills-chips">
-                                <span class="chip" style="color:var(--text-muted)">Навыки появятся после опроса</span>
-                            </div>
-                        </div>
-                        <div class="resume-section" style="margin-bottom:0">
-                            <div class="resume-section-title" data-t="langSection">Ожидаемая зарплата</div>
-                            <div style="font-size:15px;font-weight:600;color:var(--gold)" id="resume-display-salary">—
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Score card -->
-                    <div style="display:flex;flex-direction:column;gap:18px">
-                        <div class="card">
-                            <div class="card-title" data-t="scoreTitle">🎯 Индекс конкурентности</div>
-                            <div style="text-align:center;margin:24px 0">
-                                <svg width="120" height="120" viewBox="0 0 120 120">
-                                    <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.06)"
-                                        stroke-width="10" />
-                                    <circle id="score-ring" cx="60" cy="60" r="50" fill="none" stroke="url(#grad1)"
-                                        stroke-width="10" stroke-dasharray="314" stroke-dashoffset="314"
-                                        stroke-linecap="round" transform="rotate(-90 60 60)"
-                                        style="transition:stroke-dashoffset 1s ease" />
-                                    <defs>
-                                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#7C3AED" />
-                                            <stop offset="100%" stop-color="#A855F7" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                                <div style="margin-top:-80px;margin-bottom:60px">
-                                    <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,var(--violet-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text"
-                                        id="resume-score-value">0</div>
-                                    <div style="font-size:11px;color:var(--text-muted)">/ 100</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-title">🎯 Топ совпадений</div>
-                            <div id="top-match-list-resume"
-                                style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
-                                <div style="font-size:12px;color:var(--text-muted)">Создайте профиль, чтобы увидеть
-                                    совпадения</div>
-                            </div>
-                            <button class="btn btn-ghost btn-sm" style="margin-top:14px;width:100%"
-                                onclick="navigateTo('vacancies')">Смотреть все →</button>
-                        </div>
-                        <div class="card">
-                            <div class="card-title">🤖 AI Помощник</div>
-                            <div style="font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.6">
-                                Пройди опрос в чате, чтобы AI построил резюме и нашёл подходящие вакансии.</div>
-                            <button class="btn btn-primary btn-sm" style="margin-top:14px"
-                                onclick="navigateTo('home')">💬 Начать опрос</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- EDIT -->
-                <div data-tab="edit" class="tab-content hidden">
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="card-title" style="margin-bottom:16px">✏️ Основная информация</div>
-                            <div class="input-group"><label class="input-label" data-t="yourName">Ваше имя</label><input
-                                    type="text" class="form-input" id="edit-name" placeholder="Ваше имя" /></div>
-                            <div class="input-group"><label class="input-label" data-t="yourRole">Желаемая
-                                    должность</label><input type="text" class="form-input" id="edit-role"
-                                    placeholder="Frontend Developer" /></div>
-                            <div class="input-group"><label class="input-label">Университет</label><input type="text"
-                                    class="form-input" id="edit-uni" placeholder="КазНТУ" /></div>
-                            <div class="input-group"><label class="input-label">О себе</label><textarea
-                                    class="form-input" rows="3" id="edit-about" style="resize:vertical"
-                                    placeholder="Расскажи о себе…"></textarea></div>
-                            <button class="btn btn-primary" onclick="saveEditedProfile()"
-                                data-t="save">Сохранить</button>
-                        </div>
-                        <div class="card">
-                            <div class="card-title" style="margin-bottom:16px" data-t="skillsSection">Навыки</div>
-                            <div class="input-group"><label class="input-label">Навыки (через запятую)</label><input
-                                    type="text" class="form-input" id="edit-skills"
-                                    placeholder="React, Python, Figma…" /></div>
-                            <div class="input-group"><label class="input-label">Опыт работы</label><textarea
-                                    class="form-input" rows="2" id="edit-exp"
-                                    placeholder="Стажировка, фриланс…"></textarea></div>
-                            <div class="input-group"><label class="input-label">Ожидаемая зарплата</label>
-                                <select class="form-select" id="edit-salary">
-                                    <option>от 150 000 ₸</option>
-                                    <option>от 250 000 ₸</option>
-                                    <option>от 350 000 ₸</option>
-                                    <option>от 500 000 ₸</option>
-                                </select>
-                            </div>
-                            <button class="btn btn-primary" onclick="saveEditedProfile()"
-                                data-t="save">Сохранить</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    </section>
 
-            <!-- ══ VACANCIES ══ -->
-            <section id="page-vacancies" class="page">
+    <!-- ══════════════════════════════════════════
+     PAGE 2 — РЕЗЮМЕ
+══════════════════════════════════════════ -->
+    <section id="page-resume" class="page">
+        <div class="page-header-band">
+            <div class="section-label" data-t="navResume">РЕЗЮМЕ</div>
+            <h1 class="page-hero-title" data-t="resumeHeroTitle">Резюме под твой тип личности</h1>
+            <p class="page-hero-sub" data-t="resumeHeroSub">AI-помощник создаёт резюме с акцентом на твои сильные
+                стороны по MBTI</p>
+        </div>
 
-                <!-- ① VACANCY OF THE DAY -->
-                <div class="vac-spotlight" id="vac-of-day">
-                    <div class="vac-spotlight-label">🏆 Вакансия дня</div>
-                    <div class="vac-spotlight-title" id="vod-title">Frontend Developer — Kolesa Group</div>
-                    <div class="vac-spotlight-meta">
-                        <span id="vod-company">📍 Алматы &nbsp;·&nbsp; Kolesa Group</span>
-                        <span id="vod-salary" style="color:var(--gold);font-weight:700">300–500k ₸</span>
-                        <span class="chance-badge chance-high" id="vod-chance">🎯 92%</span>
-                    </div>
-                    <div class="vac-spotlight-desc">Лучшая вакансия дня по совпадению с профилями пользователей FindJob.
-                        Обновляется ежедневно.</div>
-                    <button class="btn btn-primary btn-sm" onclick="handleApply(1)">Откликнуться →</button>
-                </div>
-
-                <!-- ② POPULAR VACANCIES (quick chips) -->
-                <div class="section-header mb-24" style="margin-top:32px">
-                    <div class="section-title">🔥 Популярные категории</div>
-                </div>
-                <div class="popular-chips" id="popular-chips">
-                    <button class="pop-chip active" onclick="filterByCategory('')">Все</button>
-                    <button class="pop-chip" onclick="filterByCategory('it')">💻 IT</button>
-                    <button class="pop-chip" onclick="filterByCategory('design')">🎨 Дизайн</button>
-                    <button class="pop-chip" onclick="filterByCategory('marketing')">📣 Маркетинг</button>
-                    <button class="pop-chip" onclick="filterByCategory('finance')">💰 Финансы</button>
-                    <button class="pop-chip" onclick="filterByCategory('medicine')">🏥 Медицина</button>
-                    <button class="pop-chip" onclick="filterByCategory('education')">📚 Образование</button>
-                    <button class="pop-chip" onclick="filterByCategory('construction')">🏗️ Строительство</button>
-                    <button class="pop-chip" onclick="filterByCategory('food')">🍽️ Кулинария</button>
-                    <button class="pop-chip" onclick="filterByCategory('logistics')">🚚 Логистика</button>
-                    <button class="pop-chip" onclick="filterByCategory('beauty')">💇 Красота</button>
-                    <button class="pop-chip" onclick="filterByCategory('sport')">⚽ Спорт</button>
-                    <button class="pop-chip" onclick="filterByCategory('oil')">⛽ Нефть и газ</button>
-                </div>
-
-                <!-- ③ FILTERS -->
-                <details class="filter-panel" id="filter-panel">
-                    <summary class="filter-summary">⚙️ Расширенные фильтры <span class="filter-count"
-                            id="filter-count"></span></summary>
-                    <div class="filter-grid">
-                        <div class="filter-group">
-                            <label class="filter-label">🌐 Язык работы</label>
-                            <select class="form-select filter-select" id="f-lang" onchange="applyFilters()">
-                                <option value="">Любой</option>
-                                <option value="ru">Русский</option>
-                                <option value="kz">Казахский</option>
-                                <option value="en">Английский</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label class="filter-label">🎂 Возраст</label>
-                            <select class="form-select filter-select" id="f-age" onchange="applyFilters()">
-                                <option value="">Любой</option>
-                                <option value="18">18–25 лет</option>
-                                <option value="25">25–35 лет</option>
-                                <option value="35">35+ лет</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label class="filter-label">💼 Опыт работы</label>
-                            <select class="form-select filter-select" id="f-exp" onchange="applyFilters()">
-                                <option value="">Любой</option>
-                                <option value="none">Без опыта</option>
-                                <option value="1">1–3 года</option>
-                                <option value="3">3–5 лет</option>
-                                <option value="5">5+ лет</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label class="filter-label">📍 Местонахождение</label>
-                            <select class="form-select filter-select" id="f-city" onchange="applyFilters()">
-                                <option value="">Все города</option>
-                                <option value="Алматы">Алматы</option>
-                                <option value="Астана">Астана</option>
-                                <option value="Шымкент">Шымкент</option>
-                                <option value="Атырау">Атырау</option>
-                                <option value="remote">Удалённо</option>
-                            </select>
-                        </div>
-                        <div class="filter-group" style="grid-column:1/-1">
-                            <label class="filter-label">🏷️ Профессия / ключевое слово</label>
-                            <input type="text" class="form-input filter-select" id="f-prof"
-                                placeholder="Frontend, Бухгалтер, Врач…" oninput="applyFilters()" />
-                        </div>
-                    </div>
-                    <button class="btn btn-ghost btn-sm" style="margin-top:12px" onclick="resetFilters()">✕ Сбросить
-                        фильтры</button>
-                </details>
-
-                <!-- ④ MAIN TOOLBAR (search + risk) -->
-                <div class="vacancy-toolbar" style="margin-top:24px">
-                    <input type="text" class="search-input" id="vacancy-search" data-tp="searchPlaceholder"
-                        placeholder="Поиск по названию или компании…" />
-                    <div class="risk-toggle">
-                        <button class="risk-btn safe-active" id="safe-btn" data-t="safeBtn">🛡️ Безопасно</button>
-                        <button class="risk-btn" id="risk-btn" data-t="riskBtn">🔥 Рискую</button>
-                    </div>
-                </div>
-
-                <!-- Results header -->
-                <div class="section-header mb-24">
-                    <div class="section-title">📋 Вакансии по шансам</div>
-                    <div class="text-sm" id="vacancy-count-label"></div>
-                </div>
-                <div class="grid-auto" id="vacancies-grid"></div>
-
-                <!-- ⑤ NEWS OF THE DAY -->
-                <div class="section-header" style="margin-top:48px;margin-bottom:20px">
-                    <div class="section-title">📰 Новости рынка труда</div>
-                    <span class="news-date" id="news-date"></span>
-                </div>
-                <div class="news-grid">
-                    <article class="news-card news-card-featured">
-                        <div class="news-tag">🔥 Главное</div>
-                        <div class="news-title">Рынок IT в Казахстане вырос на 34% — рекордные показатели за 5 лет</div>
-                        <div class="news-body">По данным Министерства цифрового развития, спрос на IT-специалистов
-                            достиг рекорда. Средняя зарплата Junior-разработчика выросла до 280 000 ₸.</div>
-                        <div class="news-meta">📅 Сегодня &nbsp;·&nbsp; 🏛️ МЦРКиАП РК</div>
-                    </article>
-                    <article class="news-card">
-                        <div class="news-tag">💰 Зарплаты</div>
-                        <div class="news-title">Бухгалтеры и финансисты стали самыми востребованными в Алматы</div>
-                        <div class="news-body">Количество вакансий в финансовом секторе выросло на 22% по сравнению с
-                            прошлым кварталом.</div>
-                        <div class="news-meta">📅 Сегодня &nbsp;·&nbsp; 🌐 hh.kz</div>
-                    </article>
-                    <article class="news-card">
-                        <div class="news-tag">🎓 Образование</div>
-                        <div class="news-title">Новые программы стажировок от Samruk-Kazyna для студентов</div>
-                        <div class="news-body">Государственный холдинг открывает 500 мест для стажёров в 2026 году —
-                            дедлайн подачи заявок 1 апреля.</div>
-                        <div class="news-meta">📅 Сегодня &nbsp;·&nbsp; 🏢 Самрук-Казына</div>
-                    </article>
-                    <article class="news-card">
-                        <div class="news-tag">⚡ Тренд</div>
-                        <div class="news-title">Удалённая работа: 40% компаний сохранят гибридный формат</div>
-                        <div class="news-body">Исследование HeadHunter показало, что большинство казахстанских
-                            работодателей планируют сохранить гибридный формат работы в 2026 году.</div>
-                        <div class="news-meta">📅 Сегодня &nbsp;·&nbsp; 🌐 hh.kz</div>
-                    </article>
-                </div>
-
-            </section>
-
-
-            <!-- ══ COURSES ══ -->
-            <section id="page-courses" class="page">
-                <div class="hero-banner" style="padding:28px 36px;margin-bottom:28px">
-                    <div class="hero-tag">📚 Кривая роста навыков</div>
-                    <div class="hero-title" style="font-size:24px" data-t="coursesTitle">Курсы для карьеры</div>
-                    <div class="hero-sub" data-t="coursesDesc">Прокачай навыки и повыси шансы на рынке</div>
-                </div>
-                <div class="section-header mb-24">
-                    <div class="section-title">🔥 Рекомендуемые курсы</div>
-                    <div class="chips-row" style="margin:0"><span class="chip chip-green">6 курсов</span><span
-                            class="chip chip-gold">2 бесплатных</span></div>
-                </div>
-                <div class="grid-3" id="courses-grid"></div>
-            </section>
-
-            <!-- ══ WORLD ══ -->
-            <section id="page-world" class="page">
-                <div class="section-header mb-24">
-                    <div>
-                        <div class="section-title" data-t="worldTitle">Мировые запросы на специальности</div>
-                        <div class="text-sm mt-8" data-t="worldDesc">Самые востребованные профессии прямо сейчас</div>
-                    </div>
-                    <div class="chip chip-gold">📅 Февраль 2026</div>
-                </div>
-                <div class="card mb-24">
-                    <div class="card-title" style="margin-bottom:24px">📊 Топ-специальности по мировому спросу</div>
-                    <div id="world-chart"></div>
-                </div>
-                <div class="section-header mb-24">
-                    <div class="section-title" data-t="countriesTitle">🌍 Горящие вакансии по странам</div>
-                </div>
-                <div class="map-grid" id="world-map"></div>
-                <div class="card mt-24">
-                    <div class="card-title" style="margin-bottom:20px">🚀 Тренды 2026</div>
-                    <div class="grid-3">
-                        <div
-                            style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.2);border-radius:var(--radius-sm);padding:18px">
-                            <div style="font-size:24px;margin-bottom:8px">🤖</div>
-                            <div style="font-size:14px;font-weight:700;margin-bottom:6px">AI & Machine Learning</div>
-                            <div style="font-size:12px;color:var(--text-secondary)">+47% рост за год. Высокий спрос в
-                                США, ЕС, КЗ.</div>
-                            <div class="chip chip-green" style="margin-top:10px">🔥 Горячо</div>
-                        </div>
-                        <div
-                            style="background:rgba(6,182,212,0.08);border:1px solid rgba(6,182,212,0.2);border-radius:var(--radius-sm);padding:18px">
-                            <div style="font-size:24px;margin-bottom:8px">☁️</div>
-                            <div style="font-size:14px;font-weight:700;margin-bottom:6px">Cloud & DevOps</div>
-                            <div style="font-size:12px;color:var(--text-secondary)">AWS, Azure, GCP. +38% среди
-                                растущих.</div>
-                            <div class="chip"
-                                style="margin-top:10px;background:rgba(6,182,212,0.1);color:#06B6D4;border-color:rgba(6,182,212,0.3)">
-                                📈 Стабильно</div>
-                        </div>
-                        <div
-                            style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm);padding:18px">
-                            <div style="font-size:24px;margin-bottom:8px">🔐</div>
-                            <div style="font-size:14px;font-weight:700;margin-bottom:6px">Cybersecurity</div>
-                            <div style="font-size:12px;color:var(--text-secondary)">Критический дефицит 3.4M
-                                специалистов.</div>
-                            <div class="chip chip-gold" style="margin-top:10px">💰 Высокий доход</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ══ SEEKER CABINET ══ -->
-            <section id="page-seeker" class="page">
-                <div class="profile-header">
-                    <div class="profile-big-avatar">👨‍💻</div>
-                    <div>
-                        <div class="profile-name" id="seeker-name">—</div>
-                        <div class="profile-tagline" data-t="student">Студент</div>
-                        <div class="chips-row" style="margin-top:10px">
-                            <span class="chip chip-green" data-t="available">🟢 Готов к работе</span>
-                        </div>
-                    </div>
-                    <div class="profile-stats">
-                        <div class="profile-stat">
-                            <div class="profile-stat-value">4</div>
-                            <div class="profile-stat-label" data-t="applications">Отклики</div>
-                        </div>
-                        <div class="profile-stat">
-                            <div class="profile-stat-value">1</div>
-                            <div class="profile-stat-label">Приглашение</div>
-                        </div>
-                        <div class="profile-stat">
-                            <div class="profile-stat-value" id="seeker-score">0</div>
-                            <div class="profile-stat-label">Индекс</div>
-                        </div>
-                    </div>
-                    <button class="btn btn-ghost btn-sm" data-t="editProfile">✏️ Редактировать</button>
-                </div>
-                <div class="tab-bar">
-                    <button class="tab-btn active" data-tab="apps" onclick="setTab('seeker','apps')"
-                        data-t="applications">Мои отклики</button>
-                    <button class="tab-btn" data-tab="saved" onclick="setTab('seeker','saved')"
-                        data-t="saved">Сохранённые</button>
-                    <button class="tab-btn" data-tab="settings" onclick="setTab('seeker','settings')"
-                        data-t="settings">Настройки</button>
-                </div>
-                <div data-tab="apps" class="tab-content">
-                    <div class="section-header mb-24">
-                        <div class="section-title">📨 История откликов</div>
-                        <button class="btn btn-primary btn-sm" onclick="navigateTo('vacancies')">+ Новый отклик</button>
-                    </div>
-                    <div id="applied-list"></div>
-                </div>
-                <div data-tab="saved" class="tab-content hidden">
-                    <div style="text-align:center;padding:60px;color:var(--text-muted)">
-                        <div style="font-size:48px;margin-bottom:12px">🔖</div>
-                        <div>Нет сохранённых вакансий</div>
-                        <button class="btn btn-primary btn-sm" style="margin-top:16px"
-                            onclick="navigateTo('vacancies')">Перейти к поиску</button>
-                    </div>
-                </div>
-                <div data-tab="settings" class="tab-content hidden">
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="card-title" style="margin-bottom:16px">⚙️ Настройки профиля</div>
-                            <div class="input-group"><label class="input-label">Уведомления</label>
-                                <select class="form-select">
-                                    <option>Каждый день</option>
-                                    <option>Раз в неделю</option>
-                                    <option>Выключить</option>
-                                </select>
-                            </div>
-                            <div class="input-group"><label class="input-label">Видимость профиля</label>
-                                <select class="form-select">
-                                    <option selected>Открыт для предложений</option>
-                                    <option>По приглашению</option>
-                                    <option>Скрыт</option>
-                                </select>
-                            </div>
-                            <button class="btn btn-primary"
-                                onclick="showToast(currentLang==='ru'?'✅ Настройки сохранены!':'✅ Параметрлер сақталды!')">Сохранить</button>
-                        </div>
-                        <div class="card">
-                            <div class="card-title" style="margin-bottom:16px">🎯 Предпочтения поиска</div>
-                            <div class="input-group"><label class="input-label">Формат работы</label>
-                                <select class="form-select">
-                                    <option>Любой</option>
-                                    <option>Удалённо</option>
-                                    <option>Гибрид</option>
-                                    <option>Офис</option>
-                                </select>
-                            </div>
-                            <div class="input-group"><label class="input-label">Режим риска</label>
-                                <select class="form-select">
-                                    <option selected>Безопасно (&gt;60% шанс)</option>
-                                    <option>Рискую (все вакансии)</option>
-                                </select>
-                            </div>
-                            <button class="btn btn-primary"
-                                onclick="showToast(currentLang==='ru'?'✅ Сохранено!':'✅ Сақталды!')">Сохранить</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ══ EMPLOYER CABINET ══ -->
-            <section id="page-employer" class="page">
-
-                <!-- Profile Header (rendered by JS) -->
-                <div id="emp-profile-header"></div>
-
-                <!-- Stats (rendered by JS) -->
-                <div id="emp-stats-grid" class="stats-grid" style="margin-bottom:24px"></div>
-
-                <!-- Tabs -->
-                <div class="tab-bar">
-                    <button class="tab-btn active" data-tab="emp-vac" onclick="setTab('employer','emp-vac')"
-                        data-t="myVacancies">📋 Мои вакансии</button>
-                    <button class="tab-btn" data-tab="emp-cand" onclick="setTab('employer','emp-cand')"
-                        data-t="candidates">👥 Кандидаты</button>
-                    <button class="tab-btn" data-tab="emp-analytics" onclick="setTab('employer','emp-analytics')"
-                        data-t="empAnalytics">📊 Аналитика</button>
-                    <button class="tab-btn" data-tab="emp-settings" onclick="setTab('employer','emp-settings')"
-                        data-t="empSettings">⚙️ Настройки</button>
-                </div>
-
-                <!-- My Vacancies -->
-                <div data-tab="emp-vac" class="tab-content">
-                    <div class="section-header mb-24">
-                        <div class="section-title" data-t="myVacancies">Мои вакансии</div>
-                        <button class="btn btn-primary btn-sm" onclick="openPostJobModal()" data-t="addVacancy">+ Новая
-                            вакансия</button>
-                    </div>
-                    <div id="employer-vacancies"></div>
-                </div>
-
-                <!-- Candidates -->
-                <div data-tab="emp-cand" class="tab-content hidden">
-                    <div class="section-header mb-24">
-                        <div class="section-title" data-t="candidates">👥 Кандидаты</div>
-                        <div style="display:flex;align-items:center;gap:12px">
-                            <select class="form-select" id="cand-filter-vac" onchange="renderEmpCandidates()"
-                                style="min-width:200px">
-                                <option value="">Все вакансии</option>
-                            </select>
-                            <select class="form-select" id="cand-filter-status" onchange="renderEmpCandidates()"
-                                style="min-width:160px">
-                                <option value="">Все статусы</option>
-                                <option value="new">🆕 Новый</option>
-                                <option value="reviewed">👁 Просмотрен</option>
-                                <option value="interview">📅 Интервью</option>
-                                <option value="hired">✅ Нанят</option>
-                                <option value="rejected">✕ Отказ</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div id="employer-candidates"></div>
-                </div>
-
-                <!-- Analytics -->
-                <div data-tab="emp-analytics" class="tab-content hidden">
-                    <div class="section-header mb-24">
-                        <div class="section-title" data-t="empAnalytics">📊 Аналитика</div>
-                        <div class="chip chip-gold">Последние 7 дней</div>
-                    </div>
-                    <div class="grid-2" style="gap:16px;margin-bottom:24px">
-                        <div class="card">
-                            <div class="card-title" style="margin-bottom:16px">👁 Просмотры вакансий</div>
-                            <div id="emp-chart-views" class="emp-bar-chart"></div>
-                        </div>
-                        <div class="card">
-                            <div class="card-title" style="margin-bottom:16px">📨 Отклики</div>
-                            <div id="emp-chart-responses" class="emp-bar-chart"></div>
-                        </div>
-                    </div>
-                    <div class="card" style="margin-bottom:16px">
-                        <div class="card-title" style="margin-bottom:16px">🏆 Рейтинг вакансий</div>
-                        <div id="emp-vacancy-ranking"></div>
-                    </div>
-                    <div class="grid-2" style="gap:16px">
-                        <div class="card">
-                            <div class="card-title">🎓 Университеты кандидатов</div>
-                            <div id="emp-uni-chart" style="margin-top:16px"></div>
-                        </div>
-                        <div class="card">
-                            <div class="card-title">📱 Статусы кандидатов</div>
-                            <div id="emp-status-donut" style="margin-top:16px"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Settings -->
-                <div data-tab="emp-settings" class="tab-content hidden">
-                    <div class="grid-2" style="gap:16px">
-                        <div class="card">
-                            <div class="card-title" style="margin-bottom:16px">🏢 Информация о компании</div>
+        <div class="section-wrap">
+            <div class="resume-layout">
+                <!-- Form -->
+                <div class="resume-form-col">
+                    <div class="card">
+                        <div class="card-title" data-t="resumePersonal">👤 Личные данные</div>
+                        <div class="form-grid">
                             <div class="input-group">
-                                <label class="input-label" data-t="companyName">Название компании</label>
-                                <input type="text" class="form-input" id="emp-edit-name" placeholder="Kolesa Group" />
+                                <label class="input-label" data-t="rfName">Имя и фамилия</label>
+                                <input type="text" class="form-input" id="r-name" placeholder="Алихан Маратов" />
                             </div>
                             <div class="input-group">
-                                <label class="input-label" data-t="companyIndustry">Отрасль</label>
-                                <select class="form-select" id="emp-edit-industry">
-                                    <option>IT / Технологии</option>
-                                    <option>Финансы / Банки</option>
-                                    <option>Производство</option>
-                                    <option>Розничная торговля</option>
-                                    <option>Строительство</option>
-                                    <option>Медицина</option>
-                                    <option>Образование</option>
-                                    <option>Нефть и газ</option>
-                                    <option>Логистика</option>
-                                    <option>Маркетинг / Реклама</option>
-                                </select>
+                                <label class="input-label" data-t="rfRole">Желаемая должность</label>
+                                <input type="text" class="form-input" id="r-role" placeholder="Frontend Developer" />
                             </div>
                             <div class="input-group">
-                                <label class="input-label">Город</label>
-                                <select class="form-select" id="emp-edit-city">
-                                    <option>Алматы</option>
-                                    <option>Астана</option>
-                                    <option>Шымкент</option>
-                                    <option>Атырау</option>
-                                    <option>Актобе</option>
-                                </select>
+                                <label class="input-label">Email</label>
+                                <input type="email" class="form-input" id="r-email" placeholder="name@example.com" />
                             </div>
                             <div class="input-group">
-                                <label class="input-label" data-t="companyWebsite">Сайт компании</label>
-                                <input type="text" class="form-input" id="emp-edit-website"
-                                    placeholder="https://kolesa.kz" />
+                                <label class="input-label" data-t="rfPhone">Телефон</label>
+                                <input type="text" class="form-input" id="r-phone" placeholder="+7 777 000 0000" />
                             </div>
-                            <button class="btn btn-primary" onclick="saveEmployerSettings()"
-                                data-t="save">Сохранить</button>
-                        </div>
-                        <div class="card">
-                            <div class="card-title" style="margin-bottom:16px">📝 О компании</div>
-                            <div class="input-group">
-                                <label class="input-label" data-t="companyAbout">Описание</label>
-                                <textarea class="form-input" rows="5" id="emp-edit-about" style="resize:vertical"
-                                    placeholder="Расскажите о вашей компании…"></textarea>
+                            <div class="input-group" style="grid-column:1/-1">
+                                <label class="input-label" data-t="rfCity">Город</label>
+                                <input type="text" class="form-input" id="r-city" placeholder="Алматы" />
                             </div>
-                            <div class="input-group">
-                                <label class="input-label">Размер компании</label>
-                                <select class="form-select" id="emp-edit-size">
-                                    <option>1–10 сотрудников</option>
-                                    <option>11–50 сотрудников</option>
-                                    <option selected>51–200 сотрудников</option>
-                                    <option>201–1000 сотрудников</option>
-                                    <option>1000+ сотрудников</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label class="input-label">Уведомления о новых откликах</label>
-                                <select class="form-select">
-                                    <option>Мгновенно</option>
-                                    <option>Раз в день</option>
-                                    <option>Раз в неделю</option>
-                                </select>
-                            </div>
-                            <button class="btn btn-primary" onclick="saveEmployerSettings()"
-                                data-t="save">Сохранить</button>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <!-- ══ POST JOB MODAL ══ -->
-            <div id="post-job-modal" class="modal-overlay hidden" onclick="closePostJobModal(event)">
-                <div class="modal-box" onclick="event.stopPropagation()">
-                    <div class="modal-header">
-                        <div class="modal-title">📋 Новая вакансия</div>
-                        <button class="modal-close" onclick="closePostJobModal()">✕</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="grid-2" style="gap:14px">
-                            <div class="input-group">
-                                <label class="input-label" data-t="jobTitle">Название должности *</label>
-                                <input type="text" class="form-input" id="job-title" placeholder="Frontend Developer" />
-                            </div>
-                            <div class="input-group">
-                                <label class="input-label" data-t="jobSalary">Зарплата</label>
-                                <input type="text" class="form-input" id="job-salary"
-                                    placeholder="300 000 – 500 000 ₸" />
-                            </div>
-                            <div class="input-group">
-                                <label class="input-label" data-t="jobLocation">Город</label>
-                                <select class="form-select" id="job-location">
-                                    <option>Алматы</option>
-                                    <option>Астана</option>
-                                    <option>Шымкент</option>
-                                    <option>Атырау</option>
-                                    <option>Удалённо</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label class="input-label" data-t="jobType">Формат работы</label>
-                                <select class="form-select" id="job-type">
-                                    <option value="fulltime">Полный день</option>
-                                    <option value="hybrid">Гибрид</option>
-                                    <option value="remote">Удалённо</option>
-                                    <option value="parttime">Частичная занятость</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label class="input-label" data-t="jobCategory">Категория</label>
-                                <select class="form-select" id="job-category">
-                                    <option value="it">💻 IT</option>
-                                    <option value="design">🎨 Дизайн</option>
-                                    <option value="marketing">📣 Маркетинг</option>
-                                    <option value="finance">💰 Финансы</option>
-                                    <option value="medicine">🏥 Медицина</option>
-                                    <option value="education">📚 Образование</option>
-                                    <option value="construction">🏗️ Строительство</option>
-                                    <option value="food">🍽️ Кулинария</option>
-                                    <option value="logistics">🚚 Логистика</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label class="input-label">Опыт работы</label>
-                                <select class="form-select" id="job-exp">
-                                    <option>Без опыта</option>
-                                    <option>1–3 года</option>
-                                    <option>3–5 лет</option>
-                                    <option>5+ лет</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="input-group" style="margin-top:4px">
-                            <label class="input-label" data-t="jobDesc">Описание вакансии</label>
-                            <textarea class="form-input" rows="3" id="job-desc" style="resize:vertical"
-                                placeholder="Чем будет заниматься сотрудник…"></textarea>
-                        </div>
+                    <div class="card">
+                        <div class="card-title" data-t="resumeEdu">🎓 Образование</div>
                         <div class="input-group">
-                            <label class="input-label" data-t="jobReqs">Требования</label>
-                            <textarea class="form-input" rows="3" id="job-reqs" style="resize:vertical"
-                                placeholder="Знание React, опыт работы с API…"></textarea>
+                            <label class="input-label" data-t="rfUni">Университет</label>
+                            <input type="text" class="form-input" id="r-uni" placeholder="КазНТУ им. Сатпаева" />
+                        </div>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label class="input-label" data-t="rfSpec">Специальность</label>
+                                <input type="text" class="form-input" id="r-spec"
+                                    placeholder="Информационные системы" />
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="rfYear">Год окончания</label>
+                                <input type="text" class="form-input" id="r-year" placeholder="2025" />
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-ghost" onclick="closePostJobModal()">Отмена</button>
-                        <button class="btn btn-primary" onclick="saveNewVacancy()">🚀 Опубликовать</button>
+
+                    <div class="card">
+                        <div class="card-title" data-t="resumeSkills">⚡ Навыки</div>
+                        <div class="input-group">
+                            <label class="input-label" data-t="rfSkillsHint">Через запятую</label>
+                            <input type="text" class="form-input" id="r-skills"
+                                placeholder="React, Python, SQL, Figma" />
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title" data-t="resumeAbout">📝 О себе</div>
+                        <div class="input-group">
+                            <textarea class="form-input" id="r-about" rows="4" style="resize:vertical"
+                                placeholder="Опишите себя в 2–3 предложениях…"></textarea>
+                        </div>
+                        <button class="btn btn-ghost btn-sm" onclick="aiImproveResume()">✨ Улучшить с AI</button>
+                    </div>
+
+                    <div class="resume-export-btns">
+                        <button class="btn btn-primary" onclick="exportResumePDF()">📄 Скачать PDF</button>
+                        <button class="btn btn-outline" onclick="exportResumeDoc()">📝 Word .doc</button>
+                        <button class="btn btn-outline" onclick="exportResumeExcel()">📊 Excel</button>
+                    </div>
+                </div>
+
+                <!-- Preview -->
+                <div class="resume-preview-col">
+                    <div class="card" id="resume-preview">
+                        <div class="resume-preview-header">
+                            <div class="resume-avatar" id="prev-initials">АМ</div>
+                            <div>
+                                <div class="resume-preview-name" id="prev-name">Ваше имя</div>
+                                <div class="resume-preview-role" id="prev-role">Должность</div>
+                                <div class="resume-preview-meta" id="prev-meta">📍 Алматы · 📧 email · 📞 телефон</div>
+                            </div>
+                        </div>
+                        <div class="resume-preview-section">
+                            <div class="resume-section-title" data-t="resumeAbout">О себе</div>
+                            <div id="prev-about" style="color:var(--text-secondary);font-size:13px">Здесь появится ваш
+                                текст о себе</div>
+                        </div>
+                        <div class="resume-preview-section">
+                            <div class="resume-section-title" data-t="resumeSkills">Навыки</div>
+                            <div id="prev-skills" class="chips-row" style="flex-wrap:wrap;gap:6px"></div>
+                        </div>
+                        <div class="resume-preview-section">
+                            <div class="resume-section-title" data-t="resumeEdu">Образование</div>
+                            <div id="prev-edu" style="color:var(--text-secondary);font-size:13px">Университет ·
+                                Специальность · Год</div>
+                        </div>
+                        <div id="prev-mbti-block" class="mbti-type-inline hidden">
+                            <div class="resume-section-title">Тип личности MBTI</div>
+                            <div id="prev-mbti-type" class="mbti-type-badge-sm"></div>
+                        </div>
+                    </div>
+
+                    <!-- Gemini AI Chat -->
+                    <div class="card" style="margin-top:16px">
+                        <div class="card-title">✨ AI-помощник (Gemini)</div>
+                        <div class="ai-chat-messages" id="resume-ai-msgs">
+                            <div class="ai-msg ai-msg-bot">Привет! Я помогу улучшить твоё резюме. Задай вопрос или нажми
+                                "Улучшить с AI".</div>
+                        </div>
+                        <div class="ai-input-row">
+                            <input type="text" class="form-input" id="resume-ai-input"
+                                placeholder="Как улучшить моё резюме?"
+                                onkeydown="if(event.key==='Enter')sendResumeAI()" />
+                            <button class="btn btn-primary btn-sm" onclick="sendResumeAI()">→</button>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-        </main>
-    </div>
+    <!-- ══════════════════════════════════════════
+     PAGE 3 — КУРСЫ
+══════════════════════════════════════════ -->
+    <section id="page-courses" class="page">
+        <div class="page-header-band">
+            <div class="section-label" data-t="navCourses">КУРСЫ</div>
+            <h1 class="page-hero-title" data-t="coursesHeroTitle">Прокачай себя</h1>
+            <p class="page-hero-sub" data-t="coursesHeroSub">Бесплатные, платные и государственные курсы для роста в
+                Казахстане</p>
+        </div>
 
-    <script>
-        // Bridge for inline onclick handlers (functions defined in app.js)
-        function saveEditedProfile() {
-            userProfile.name = document.getElementById('edit-name')?.value || userProfile.name;
-            userProfile.role = document.getElementById('edit-role')?.value || userProfile.role;
-            userProfile.university = document.getElementById('edit-uni')?.value || userProfile.university;
-            userProfile.about = document.getElementById('edit-about')?.value || userProfile.about;
-            userProfile.salary = document.getElementById('edit-salary')?.value || userProfile.salary;
-            const sk = document.getElementById('edit-skills')?.value;
-            if (sk) userProfile.skills = sk.split(',').map(s => s.trim()).filter(Boolean);
-            userProfile.experience = document.getElementById('edit-exp')?.value || userProfile.experience;
-            const parts = (userProfile.name || '?').trim().split(' ');
-            userProfile.initials = parts.map(p => p[0]?.toUpperCase() || '').join('').slice(0, 2) || '?';
-            rebuildVacancies();
-            renderVacancies();
-            updateSidebarUser();
-            updateResumeFromProfile();
-            renderSeekerCabinet();
-            setTab('resume', 'view');
-            showToast(currentLang === 'ru' ? '✅ Резюме сохранено!' : '✅ Түйіндеме сақталды!');
-        }
-    </script>
+        <div class="section-wrap">
+            <!-- Filter -->
+            <div class="courses-filter">
+                <button class="filter-btn active" onclick="filterCourses('all')" data-t="coursesAll">Все</button>
+                <button class="filter-btn" onclick="filterCourses('free')" data-t="coursesFree">🆓 Бесплатные</button>
+                <button class="filter-btn" onclick="filterCourses('paid')" data-t="coursesPaid">💰 Платные</button>
+                <button class="filter-btn" onclick="filterCourses('state')" data-t="coursesState">🏛️
+                    Государственные</button>
+            </div>
+            <div class="courses-cols" id="courses-container"></div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+     PAGE 4 — МИРОВАЯ АРЕНА
+══════════════════════════════════════════ -->
+    <section id="page-world" class="page">
+        <div class="page-header-band">
+            <div class="section-label" data-t="navWorld">МИРОВАЯ АРЕНА</div>
+            <h1 class="page-hero-title" data-t="worldHeroTitle">Работай на международном уровне</h1>
+            <p class="page-hero-sub" data-t="worldHeroSub">Стратегия сотрудничества с иностранными компаниями для
+                граждан Казахстана</p>
+        </div>
+
+        <div class="section-wrap">
+            <div class="world-grid" id="world-grid"></div>
+
+            <div class="world-strategy">
+                <div class="section-label" style="color:#10B981" data-t="stratLabel">СТРАТЕГИЯ</div>
+                <h2 class="section-title" data-t="stratTitle">Как выйти на международный рынок</h2>
+                <div class="strategy-steps">
+                    <div class="strategy-step">
+                        <div class="strategy-num">01</div>
+                        <div>
+                            <div class="strategy-title" data-t="strat1t">Определи тип личности</div>
+                            <div class="strategy-desc" data-t="strat1d">Пройди MBTI — иностранные HR активно используют
+                                его при найме.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-step">
+                        <div class="strategy-num">02</div>
+                        <div>
+                            <div class="strategy-title" data-t="strat2t">Подтверди квалификацию</div>
+                            <div class="strategy-desc" data-t="strat2d">Международные сертификаты (AWS, Google, CFA)
+                                открывают двери в 50+ стран.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-step">
+                        <div class="strategy-num">03</div>
+                        <div>
+                            <div class="strategy-title" data-t="strat3t">Оформи визу / релокацию</div>
+                            <div class="strategy-desc" data-t="strat3d">Казахстан имеет соглашения о безвизовом въезде с
+                                70+ странами.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-step">
+                        <div class="strategy-num">04</div>
+                        <div>
+                            <div class="strategy-title" data-t="strat4t">Откликнись через FindJob</div>
+                            <div class="strategy-desc" data-t="strat4d">Твой MBTI-профиль и резюме уже готовы — просто
+                                нажми "Откликнуться".</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+     PAGE 5 — АНКЕТА (MBTI TEST)
+══════════════════════════════════════════ -->
+    <section id="page-quiz" class="page">
+
+        <!-- Mode selector -->
+        <div id="quiz-mode-select" class="quiz-mode-wrap">
+            <div class="page-header-band">
+                <div class="section-label" data-t="navQuiz">АНКЕТА</div>
+                <h1 class="page-hero-title" data-t="quizHeroTitle">Кто ты?</h1>
+                <p class="page-hero-sub" data-t="quizHeroSub">Выбери режим и получи персональный подбор вакансий</p>
+            </div>
+            <div class="section-wrap">
+                <div class="quiz-mode-cards">
+                    <div class="quiz-mode-card" onclick="setQuizMode('worker')">
+                        <div class="quiz-mode-icon">🧑‍💼</div>
+                        <div class="quiz-mode-title" data-t="modeWorker">Я ищу работу</div>
+                        <div class="quiz-mode-desc" data-t="modeWorkerDesc">Пройди тест MBTI → узнай свой тип → получи
+                            вакансии, где ты идеален</div>
+                        <div class="btn btn-primary" style="margin-top:20px" data-t="modeWorkerBtn">Начать тест</div>
+                    </div>
+                    <div class="quiz-mode-card" onclick="setQuizMode('employer')">
+                        <div class="quiz-mode-icon">🏢</div>
+                        <div class="quiz-mode-title" data-t="modeEmployer">Я ищу сотрудника</div>
+                        <div class="quiz-mode-desc" data-t="modeEmployerDesc">Укажи желаемые черты личности → получи
+                            список подходящих кандидатов</div>
+                        <div class="btn btn-outline" style="margin-top:20px" data-t="modeEmployerBtn">Подобрать</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKER: MBTI Test -->
+        <div id="quiz-worker" class="hidden">
+            <div class="test-wrap">
+                <!-- Progress -->
+                <div class="test-progress-bar">
+                    <div class="test-progress-fill" id="quiz-progress-fill" style="width:0%"></div>
+                </div>
+                <div class="test-progress-label">
+                    <span id="quiz-q-num">Вопрос 1 из 16</span>
+                    <span id="quiz-dim-label" class="quiz-dim-chip">E vs I</span>
+                </div>
+
+                <!-- Question card -->
+                <div class="test-question-card" id="quiz-question-card">
+                    <div class="test-question-text" id="quiz-q-text"></div>
+                    <div class="test-options" id="quiz-options"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKER: Result -->
+        <div id="quiz-result" class="hidden">
+            <div class="section-wrap">
+                <div class="result-header">
+                    <div class="result-type-badge" id="result-type-badge"></div>
+                    <h2 class="result-type-name" id="result-type-name"></h2>
+                    <p class="result-type-desc" id="result-type-desc"></p>
+                    <div class="result-traits" id="result-traits"></div>
+                </div>
+                <div class="result-dimensions">
+                    <div class="dim-bar-row" id="dim-ei"></div>
+                    <div class="dim-bar-row" id="dim-sn"></div>
+                    <div class="dim-bar-row" id="dim-tf"></div>
+                    <div class="dim-bar-row" id="dim-jp"></div>
+                </div>
+                <div class="section-label" style="margin-top:40px" data-t="matchedVac">ПОДХОДЯЩИЕ ВАКАНСИИ</div>
+                <div id="result-vacancies"></div>
+                <div style="text-align:center;margin-top:24px">
+                    <button class="btn btn-outline" onclick="restartQuiz()" data-t="retakeBtn">Пройти заново</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- EMPLOYER: Trait picker -->
+        <div id="quiz-employer" class="hidden">
+            <div class="section-wrap">
+                <div class="page-header-band" style="margin-bottom:32px">
+                    <div class="section-label" data-t="modeEmployer">РАБОТОДАТЕЛЬ</div>
+                    <h2 class="page-hero-title" style="font-size:32px" data-t="empPickTitle">Какой характер нужен
+                        сотруднику?</h2>
+                </div>
+                <div class="employer-traits-grid">
+                    <div class="trait-picker-card">
+                        <div class="trait-label">Энергия <span class="trait-ei" id="emp-ei-label">Нет
+                                предпочтений</span></div>
+                        <div class="trait-desc">Экстраверт (E) общителен и активен. Интроверт (I) — вдумчив и
+                            сосредоточен.</div>
+                        <div class="trait-slider-row">
+                            <span class="trait-pole">E</span>
+                            <input type="range" id="emp-ei" min="0" max="100" value="50" class="trait-slider"
+                                oninput="updateEmpTraits()" />
+                            <span class="trait-pole">I</span>
+                        </div>
+                    </div>
+                    <div class="trait-picker-card">
+                        <div class="trait-label">Восприятие <span class="trait-ei" id="emp-sn-label">Нет
+                                предпочтений</span></div>
+                        <div class="trait-desc">Сенсорик (S) — практичен, ориентирован на факты. Интуит (N) — видит big
+                            picture.</div>
+                        <div class="trait-slider-row">
+                            <span class="trait-pole">S</span>
+                            <input type="range" id="emp-sn" min="0" max="100" value="50" class="trait-slider"
+                                oninput="updateEmpTraits()" />
+                            <span class="trait-pole">N</span>
+                        </div>
+                    </div>
+                    <div class="trait-picker-card">
+                        <div class="trait-label">Решения <span class="trait-ei" id="emp-tf-label">Нет
+                                предпочтений</span></div>
+                        <div class="trait-desc">Логик (T) — объективен, аналитичен. Этик (F) — ориентирован на людей и
+                            ценности.</div>
+                        <div class="trait-slider-row">
+                            <span class="trait-pole">T</span>
+                            <input type="range" id="emp-tf" min="0" max="100" value="50" class="trait-slider"
+                                oninput="updateEmpTraits()" />
+                            <span class="trait-pole">F</span>
+                        </div>
+                    </div>
+                    <div class="trait-picker-card">
+                        <div class="trait-label">Образ жизни <span class="trait-ei" id="emp-jp-label">Нет
+                                предпочтений</span></div>
+                        <div class="trait-desc">Рационал (J) — планирует и структурирует. Иррационал (P) — гибок и
+                            открыт новому.</div>
+                        <div class="trait-slider-row">
+                            <span class="trait-pole">J</span>
+                            <input type="range" id="emp-jp" min="0" max="100" value="50" class="trait-slider"
+                                oninput="updateEmpTraits()" />
+                            <span class="trait-pole">P</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin:24px 0">
+                    <div id="emp-selected-types" class="chips-row"
+                        style="justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:16px"></div>
+                    <button class="btn btn-primary btn-lg" onclick="runEmployerMatch()" data-t="findCandidates">🎯 Найти
+                        кандидатов</button>
+                </div>
+                <div id="employer-match-result" class="hidden">
+                    <div class="section-label" data-t="matchedCand">ПОДХОДЯЩИЕ КАНДИДАТЫ</div>
+                    <div id="employer-candidates-list"></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
     <script src="app.js"></script>
 </body>
 
