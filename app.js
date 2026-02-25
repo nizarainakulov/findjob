@@ -53,6 +53,19 @@ const T = {
     newAccountSub: 'Пройти опрос и создать резюме',
     demoAccount: 'Войти как студент',
     demoAccountSub: 'Демо-профиль с готовыми данными',
+    demoEmployer: 'Войти как работодатель',
+    demoEmployerSub: 'Кабинет HR для размещения вакансий',
+    // Employer
+    empAnalytics: 'Аналитика', empSettings: 'Настройки',
+    pauseVac: 'Пауза', activateVac: 'Активировать',
+    postJob: '+ Новая вакансия', postJobTitle: 'Новая вакансия',
+    jobTitle: 'Название должности', jobSalary: 'Зарплата',
+    jobLocation: 'Город', jobType: 'Формат работы',
+    jobCategory: 'Категория', jobDesc: 'Описание вакансии', jobReqs: 'Требования',
+    companyName: 'Название компании', companyIndustry: 'Отрасль',
+    companyWebsite: 'Сайт компании', companyAbout: 'О компании',
+    candNew: '🆕 Новый', candReviewed: '👁 Просмотрен',
+    candInterview: '📅 Интервью', candHired: '✅ Нанят', candRejected: '✕ Отказ',
   },
   kz: {
     home: 'Басты бет', resume: 'Түйіндеме', vacancies: 'Бос орындар',
@@ -102,6 +115,18 @@ const T = {
     newAccountSub: 'Сауалнамадан өтіп, түйіндеме жасау',
     demoAccount: 'Студент ретінде кіру',
     demoAccountSub: 'Дайын деректері бар демо-профиль',
+    demoEmployer: 'Жұмыс беруші ретінде кіру',
+    demoEmployerSub: 'Бос орын орналастыруға арналған HR кабинеті',
+    empAnalytics: 'Аналитика', empSettings: 'Параметрлер',
+    pauseVac: 'Тоқтату', activateVac: 'Белсендіру',
+    postJob: '+ Жаңа бос орын', postJobTitle: 'Жаңа бос орын',
+    jobTitle: 'Лауазым атауы', jobSalary: 'Жалақы',
+    jobLocation: 'Қала', jobType: 'Жұмыс форматы',
+    jobCategory: 'Санат', jobDesc: 'Бос орын сипаттамасы', jobReqs: 'Талаптар',
+    companyName: 'Компания атауы', companyIndustry: 'Сала',
+    companyWebsite: 'Компания сайты', companyAbout: 'Компания туралы',
+    candNew: '🆕 Жаңа', candReviewed: '👁 Қаралды',
+    candInterview: '📅 Сұхбат', candHired: '✅ Жалданды', candRejected: '✕ Бас тарту',
   }
 };
 
@@ -110,6 +135,7 @@ let currentLang = 'ru';
 let currentPage = 'home';
 let riskMode = 'safe';
 let enrolledCourses = new Set();
+let currentMode = 'student'; // 'student' | 'employer'
 
 /* ── USER PROFILE (built by onboarding) ── */
 let userProfile = {
@@ -341,11 +367,39 @@ const appliedJobs = [
 ];
 
 const employerVacancies = [
-  { emoji: '💻', title: 'Frontend Developer', applicants: 14, views: 240, status: 'active' },
-  { emoji: '📊', title: 'Business Analyst', applicants: 8, views: 180, status: 'active' },
-  { emoji: '🎨', title: 'Product Designer', applicants: 21, views: 390, status: 'active' },
-  { emoji: '🔐', title: 'Security Engineer', applicants: 3, views: 95, status: 'paused' },
+  { id: 'ev1', emoji: '💻', title: 'Frontend Developer', salary: '300–500k ₸', location: 'Алматы', type: 'hybrid', category: 'it', desc: 'Разработка веб-приложений на React/TypeScript', reqs: 'React, TypeScript, REST API', applicants: 14, views: 240, status: 'active', publishedDate: '20 фев' },
+  { id: 'ev2', emoji: '📊', title: 'Business Analyst', salary: '280–420k ₸', location: 'Алматы', type: 'fulltime', category: 'it', desc: 'Анализ бизнес-процессов, постановка задач', reqs: 'SQL, Excel, опыт в автомотиве', applicants: 8, views: 180, status: 'active', publishedDate: '18 фев' },
+  { id: 'ev3', emoji: '🎨', title: 'Product Designer', salary: '250–350k ₸', location: 'Алматы', type: 'remote', category: 'design', desc: 'Дизайн продуктов и iOS/Android', reqs: 'Figma, UX Research, Prototyping', applicants: 21, views: 390, status: 'active', publishedDate: '15 фев' },
+  { id: 'ev4', emoji: '🔐', title: 'Security Engineer', salary: '400–650k ₸', location: 'Алматы', type: 'fulltime', category: 'it', desc: 'Обеспечение безопасности инфраструктуры', reqs: 'Linux, Cisco, Network Security', applicants: 3, views: 95, status: 'paused', publishedDate: '10 фев' },
 ];
+
+const employerCandidates = [
+  { id: 'c1', vacancyId: 'ev1', name: 'Алихан Маратов', initials: 'АМ', university: 'КазНТУ', role: 'Frontend Dev', skills: ['React', 'TypeScript', 'Git'], match: 87, status: 'new', date: '24 фев' },
+  { id: 'c2', vacancyId: 'ev1', name: 'Динара Сейткали', initials: 'ДС', university: 'МУИТ', role: 'Frontend Dev', skills: ['React', 'CSS', 'JS'], match: 72, status: 'reviewed', date: '23 фев' },
+  { id: 'c3', vacancyId: 'ev1', name: 'Нурлан Аскаров', initials: 'НА', university: 'КазГЮУ', role: 'Frontend Dev', skills: ['JS', 'HTML', 'CSS'], match: 51, status: 'interview', date: '22 фев' },
+  { id: 'c4', vacancyId: 'ev1', name: 'Айгерим Бекова', initials: 'АБ', university: 'НУ', role: 'Frontend Dev', skills: ['Angular', 'RxJS'], match: 44, status: 'rejected', date: '21 фев' },
+  { id: 'c5', vacancyId: 'ev2', name: 'Тимур Жаксыбеков', initials: 'ТЖ', university: 'КазНУ', role: 'Analyst', skills: ['SQL', 'Excel', 'Python'], match: 80, status: 'hired', date: '19 фев' },
+  { id: 'c6', vacancyId: 'ev2', name: 'Зарина Нурмагамбетова', initials: 'ЗН', university: 'КИМЭП', role: 'Analyst', skills: ['Excel', '1С', 'SQL'], match: 65, status: 'new', date: '20 фев' },
+  { id: 'c7', vacancyId: 'ev3', name: 'Мадина Исакова', initials: 'МИ', university: 'МУИТ', role: 'Designer', skills: ['Figma', 'Adobe XD'], match: 91, status: 'interview', date: '18 фев' },
+  { id: 'c8', vacancyId: 'ev3', name: 'Даурен Сейткали', initials: 'ДС', university: 'НУ', role: 'Designer', skills: ['Figma', 'Sketch'], match: 78, status: 'reviewed', date: '17 фев' },
+];
+
+const employerAnalytics = {
+  views: [120, 95, 180, 210, 175, 240, 195],
+  responses: [8, 5, 12, 18, 11, 22, 14],
+  days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+};
+
+/* ── EMPLOYER PROFILE STATE ── */
+let employerProfile = {
+  companyName: 'Kolesa Group',
+  industry: 'IT / Технологии',
+  city: 'Алматы',
+  website: 'https://kolesa.kz',
+  about: 'Компания Kolesa Group — один из крупнейших IT-работодателей Казахстана.',
+  verified: true,
+  initials: 'KG',
+};
 
 /* ── DEMO PROFILE ── */
 const DEMO_PROFILE = {
@@ -1058,24 +1112,323 @@ function renderSeekerCabinet() {
       <div class="applied-company-icon">${j.emoji}</div>
       <div class="applied-info"><div class="applied-title">${j.title}</div><div class="applied-company">${j.company} · ${j.date}</div></div>
       <div class="chance-badge ${chanceBadgeClass(chance)}">${chance}%</div>
-      <span class="status-badge ${statusClass[j.status]}">${statusText[j.status]}</span>
+          <span class="status-badge ${statusClass[j.status]}">${statusText[j.status]}</span>
     </div>`;
   }).join('');
 }
 
+/* ── EMPLOYER WELCOME ── */
+function startDemoEmployer() {
+  currentMode = 'employer';
+  hideWelcome();
+  navigateTo('employer');
+  renderEmployerCabinet();
+  const topAvEl = document.getElementById('topbar-avatar');
+  if (topAvEl) { topAvEl.textContent = 'KG'; topAvEl.style.background = 'linear-gradient(135deg,#059669,#10B981)'; }
+  setTimeout(() => showToast(currentLang === 'ru' ? '🏢 Добро пожаловать, Kolesa Group!' : '🏢 Kolesa Group-қа қош келдіңіз!'), 600);
+}
+
+/* ── EMPLOYER CABINET RENDER ── */
 function renderEmployerCabinet() {
-  const t = T[currentLang];
+  renderEmpProfileHeader();
+  renderEmpStats();
+  renderEmpVacancies();
+  renderEmpCandidates();
+  renderEmpAnalytics();
+  populateCandFilterVac();
+  populateSettingsFields();
+}
+
+function renderEmpProfileHeader() {
+  const el = document.getElementById('emp-profile-header');
+  if (!el) return;
+  const active = employerVacancies.filter(v => v.status === 'active').length;
+  const totalApps = employerVacancies.reduce((s, v) => s + v.applicants, 0);
+  const totalViews = employerVacancies.reduce((s, v) => s + v.views, 0);
+  el.innerHTML = `
+    <div class="emp-profile-header">
+      <div class="emp-company-logo">🏢</div>
+      <div style="flex:1">
+        <div class="emp-company-name">${employerProfile.companyName}</div>
+        <div class="emp-company-meta">${employerProfile.industry} · ${employerProfile.city} · <a href="${employerProfile.website}" style="color:var(--green);text-decoration:none" target="_blank">${employerProfile.website}</a></div>
+        <div class="chips-row" style="margin-top:8px">
+          ${employerProfile.verified ? '<span class="chip chip-green">✓ Верифицирован</span>' : ''}
+          <span class="chip">🏢 ${employerProfile.industry}</span>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="profile-stat"><div class="profile-stat-value" style="color:var(--green)">${active}</div><div class="profile-stat-label">Активных</div></div>
+        <div class="profile-stat"><div class="profile-stat-value">${totalApps}</div><div class="profile-stat-label">Откликов</div></div>
+        <div class="profile-stat"><div class="profile-stat-value">${totalViews}</div><div class="profile-stat-label">Просмотров</div></div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openPostJobModal()">+ Новая вакансия</button>
+    </div>`;
+}
+
+function renderEmpStats() {
+  const el = document.getElementById('emp-stats-grid');
+  if (!el) return;
+  const active = employerVacancies.filter(v => v.status === 'active').length;
+  const totalApps = employerVacancies.reduce((s, v) => s + v.applicants, 0);
+  const totalViews = employerVacancies.reduce((s, v) => s + v.views, 0);
+  const hired = employerCandidates.filter(c => c.status === 'hired').length;
+  el.innerHTML = [
+    { icon: '💼', val: active, lbl: 'Активных вакансий' },
+    { icon: '✉️', val: totalApps, lbl: 'Всего откликов' },
+    { icon: '👁️', val: totalViews, lbl: 'Просмотров' },
+    { icon: '✅', val: hired, lbl: 'Нанято' },
+  ].map(s => `<div class="stat-card"><div class="stat-icon">${s.icon}</div><div class="stat-value">${s.val}</div><div class="stat-label">${s.lbl}</div></div>`).join('');
+}
+
+function renderEmpVacancies() {
   const c = document.getElementById('employer-vacancies');
   if (!c) return;
-  c.innerHTML = employerVacancies.map(v => `
-    <div class="emp-vacancy-row">
-      <div style="font-size:24px">${v.emoji}</div>
-      <div class="emp-vacancy-title">${v.title}</div>
-      <div class="emp-applicant-count">👥 ${v.applicants} ${t.applicants}</div>
-      <div class="emp-applicant-count">👁 ${v.views}</div>
-      <span class="chip ${v.status === 'active' ? 'chip-green' : 'chip-red'}">${v.status === 'active' ? '🟢 Активно' : '⏸ Пауза'}</span>
-      <button class="btn btn-ghost btn-sm">${t.viewCandidates}</button>
+  if (!employerVacancies.length) {
+    c.innerHTML = `<div class="emp-empty"><div class="emp-empty-icon">💼</div><div class="emp-empty-text">У вас пока нет вакансий</div><button class="btn btn-primary btn-sm" onclick="openPostJobModal()">+ Добавить вакансию</button></div>`;
+    return;
+  }
+  c.innerHTML = employerVacancies.map(v => {
+    const typeLabels = { fulltime: 'Полный день', hybrid: 'Гибрид', remote: 'Удалённо', parttime: 'Частичная' };
+    return `
+    <div class="emp-vacancy-card ${v.status === 'paused' ? 'paused' : ''}">
+      <div class="emp-vacancy-emoji">${v.emoji}</div>
+      <div class="emp-vacancy-info">
+        <div class="emp-vacancy-title">${v.title}</div>
+        <div class="emp-vacancy-meta">
+          <span>📍 ${v.location}</span>
+          <span>⏱ ${typeLabels[v.type] || v.type}</span>
+          <span>💰 ${v.salary}</span>
+          <span>🗓 ${v.publishedDate}</span>
+        </div>
+      </div>
+      <div class="emp-vacancy-stats">
+        <div class="emp-stat-block"><div class="emp-stat-num">${v.applicants}</div><div class="emp-stat-lbl">откликов</div></div>
+        <div class="emp-stat-block"><div class="emp-stat-num">${v.views}</div><div class="emp-stat-lbl">просм.</div></div>
+      </div>
+      <span class="chip ${v.status === 'active' ? 'chip-green' : 'chip-gold'}">${v.status === 'active' ? '🟢 Активно' : '⏸ Пауза'}</span>
+      <div class="emp-vacancy-actions">
+        <button class="btn btn-ghost btn-sm" onclick="setTab('employer','emp-cand');filterCandByVac('${v.id}')"; >👥 Канд.</button>
+        <button class="btn btn-ghost btn-sm" onclick="toggleVacancyStatus('${v.id}')">${v.status === 'active' ? '⏸' : '▶️'}</button>
+        <button class="btn btn-ghost btn-sm" style="color:var(--red)" onclick="deleteVacancy('${v.id}')">❌</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleVacancyStatus(id) {
+  const v = employerVacancies.find(x => x.id === id);
+  if (!v) return;
+  v.status = v.status === 'active' ? 'paused' : 'active';
+  renderEmpVacancies();
+  renderEmpStats();
+  renderEmpProfileHeader();
+  showToast(v.status === 'active' ? '▶️ Вакансия активирована' : '⏸ Вакансия поставлена на паузу');
+}
+
+function deleteVacancy(id) {
+  const idx = employerVacancies.findIndex(x => x.id === id);
+  if (idx === -1) return;
+  const title = employerVacancies[idx].title;
+  employerVacancies.splice(idx, 1);
+  renderEmpVacancies();
+  renderEmpStats();
+  renderEmpProfileHeader();
+  populateCandFilterVac();
+  showToast(`🗑️ Вакансия «${title}» удалена`);
+}
+
+/* ── POST JOB MODAL ── */
+function openPostJobModal() {
+  ['job-title', 'job-salary', 'job-desc', 'job-reqs'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  document.getElementById('post-job-modal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePostJobModal(e) {
+  if (e && e.target !== document.getElementById('post-job-modal')) return;
+  document.getElementById('post-job-modal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function saveNewVacancy() {
+  const title = document.getElementById('job-title')?.value.trim();
+  if (!title) { showToast('⚠️ Укажите название должности'); return; }
+  const emojis = { it: '💻', design: '🎨', marketing: '📣', finance: '💰', medicine: '🏥', education: '📚', construction: '🏗️', food: '🍔', logistics: '🚚' };
+  const cat = document.getElementById('job-category')?.value || 'it';
+  const newV = {
+    id: 'ev' + Date.now(),
+    emoji: emojis[cat] || '💼',
+    title,
+    salary: document.getElementById('job-salary')?.value || 'по договорённости',
+    location: document.getElementById('job-location')?.value || 'Алматы',
+    type: document.getElementById('job-type')?.value || 'fulltime',
+    category: cat,
+    desc: document.getElementById('job-desc')?.value || '',
+    reqs: document.getElementById('job-reqs')?.value || '',
+    applicants: 0, views: 0, status: 'active',
+    publishedDate: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' }),
+  };
+  employerVacancies.unshift(newV);
+  closePostJobModal();
+  renderEmpVacancies();
+  renderEmpStats();
+  renderEmpProfileHeader();
+  populateCandFilterVac();
+  showToast('🚀 Вакансия «' + title + '» опубликована!');
+}
+
+/* ── CANDIDATES ── */
+function populateCandFilterVac() {
+  const sel = document.getElementById('cand-filter-vac');
+  if (!sel) return;
+  sel.innerHTML = '<option value="">Все вакансии</option>' +
+    employerVacancies.map(v => `<option value="${v.id}">${v.title}</option>`).join('');
+}
+
+function filterCandByVac(id) {
+  const sel = document.getElementById('cand-filter-vac');
+  if (sel) sel.value = id;
+  renderEmpCandidates();
+}
+
+function renderEmpCandidates() {
+  const c = document.getElementById('employer-candidates');
+  if (!c) return;
+  const vacFilter = document.getElementById('cand-filter-vac')?.value || '';
+  const stFilter = document.getElementById('cand-filter-status')?.value || '';
+  const filtered = employerCandidates.filter(cd =>
+    (!vacFilter || cd.vacancyId === vacFilter) &&
+    (!stFilter || cd.status === stFilter)
+  );
+  if (!filtered.length) {
+    c.innerHTML = `<div class="emp-empty"><div class="emp-empty-icon">👥</div><div class="emp-empty-text">Кандидатов с такими фильтрами не найдено</div></div>`;
+    return;
+  }
+  const statusLabels = { new: '🆕 Новый', reviewed: '👁️ Просмотрен', interview: '🗓️ Интервью', hired: '✅ Нанят', rejected: '❌ Отказ' };
+  const vName = id => employerVacancies.find(v => v.id === id)?.title || id;
+  c.innerHTML = filtered.map(cd => `
+    <div class="cand-card">
+      <div class="cand-avatar">${cd.initials}</div>
+      <div class="cand-info">
+        <div class="cand-name">${cd.name}</div>
+        <div class="cand-sub"><span>🎓 ${cd.university}</span><span>💼 ${vName(cd.vacancyId)}</span><span>🗓️ ${cd.date}</span></div>
+        <div class="cand-skills">${cd.skills.map(s => `<span class="cand-skill-chip">${s}</span>`).join('')}</div>
+      </div>
+      <div class="chance-badge ${chanceBadgeClass(cd.match)}">${cd.match}%</div>
+      <select class="cand-status-select status-${cd.status}" onchange="updateCandidateStatus('${cd.id}', this.value)">
+        ${['new', 'reviewed', 'interview', 'hired', 'rejected'].map(s => `<option value="${s}" ${cd.status === s ? 'selected' : ''}>${statusLabels[s]}</option>`).join('')}
+      </select>
     </div>`).join('');
+}
+
+function updateCandidateStatus(id, newStatus) {
+  const c = employerCandidates.find(x => x.id === id);
+  if (!c) return;
+  c.status = newStatus;
+  renderEmpCandidates();
+  renderEmpStats();
+  const labels = { new: '🆕 Новый', reviewed: '👁️ Просмотрен', interview: '🗓️ Интервью', hired: '✅ Нанят', rejected: '❌ Отказ' };
+  showToast(`📄 ${c.name}: ${labels[newStatus]}`);
+}
+
+/* ── ANALYTICS ── */
+function renderEmpAnalytics() {
+  renderBarChart('emp-chart-views', employerAnalytics.views, employerAnalytics.days, 'red');
+  renderBarChart('emp-chart-responses', employerAnalytics.responses, employerAnalytics.days, 'green');
+  renderVacancyRanking();
+  renderUniChart();
+  renderStatusDonut();
+}
+
+function renderBarChart(containerId, values, labels, colorClass) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const maxVal = Math.max(...values, 1);
+  el.innerHTML = values.map((v, i) => `
+    <div class="emp-bar-col">
+      <div class="emp-bar-val">${v}</div>
+      <div class="emp-bar-fill ${colorClass}" style="height:0px" data-h="${Math.round((v / maxVal) * 90)}"></div>
+      <div class="emp-bar-label">${labels[i]}</div>
+    </div>`).join('');
+  setTimeout(() => {
+    el.querySelectorAll('.emp-bar-fill[data-h]').forEach(bar => { bar.style.height = bar.dataset.h + 'px'; });
+  }, 80);
+}
+
+function renderVacancyRanking() {
+  const el = document.getElementById('emp-vacancy-ranking');
+  if (!el) return;
+  const sorted = [...employerVacancies].sort((a, b) => b.applicants - a.applicants);
+  const maxA = Math.max(...sorted.map(v => v.applicants), 1);
+  const medals = ['gold', 'silver', 'bronze'];
+  el.innerHTML = sorted.map((v, i) => `
+    <div class="ranking-row">
+      <div class="ranking-num ${medals[i] || ''}">${i + 1}</div>
+      <div style="flex:1;font-size:13px;font-weight:600">${v.emoji} ${v.title}</div>
+      <div class="ranking-bar-wrap"><div class="ranking-bar-fill" style="width:${Math.round(v.applicants / maxA * 100)}%"></div></div>
+      <div style="font-size:13px;font-weight:700;min-width:48px;text-align:right">${v.applicants} откл.</div>
+    </div>`).join('');
+}
+
+function renderUniChart() {
+  const el = document.getElementById('emp-uni-chart');
+  if (!el) return;
+  const counts = {};
+  employerCandidates.forEach(c => { counts[c.university] = (counts[c.university] || 0) + 1; });
+  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  const maxC = Math.max(...sorted.map(x => x[1]), 1);
+  const colors = ['#E50914', '#10B981', '#F59E0B', '#06B6D4', '#A855F7'];
+  el.innerHTML = sorted.map(([uni, cnt], i) => `
+    <div class="mini-bar-row">
+      <div class="mini-bar-label">${uni}</div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:${Math.round(cnt / maxC * 100)}%;background:${colors[i % colors.length]}"></div></div>
+      <div class="mini-bar-count">${cnt}</div>
+    </div>`).join('');
+}
+
+function renderStatusDonut() {
+  const el = document.getElementById('emp-status-donut');
+  if (!el) return;
+  const counts = { new: 0, reviewed: 0, interview: 0, hired: 0, rejected: 0 };
+  employerCandidates.forEach(c => { if (counts[c.status] !== undefined) counts[c.status]++; });
+  const cfg = [
+    { key: 'new', label: 'Новые', color: 'rgba(255,255,255,0.5)' },
+    { key: 'reviewed', label: 'Просмотрены', color: '#06B6D4' },
+    { key: 'interview', label: 'Интервью', color: '#F59E0B' },
+    { key: 'hired', label: 'Наняты', color: '#10B981' },
+    { key: 'rejected', label: 'Отказано', color: '#E50914' },
+  ];
+  const total = Object.values(counts).reduce((a, b) => a + b, 0) || 1;
+  el.innerHTML = cfg.map(s => {
+    const pct = Math.round(counts[s.key] / total * 100);
+    return `<div class="mini-bar-row">
+      <div class="mini-bar-label">${s.label}</div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:${pct}%;background:${s.color}"></div></div>
+      <div class="mini-bar-count">${counts[s.key]}</div>
+    </div>`;
+  }).join('') + `<div class="status-legend">${cfg.map(s => `<div class="status-legend-item"><div class="status-dot-sm" style="background:${s.color}"></div>${s.label}: ${counts[s.key]}</div>`).join('')}</div>`;
+}
+
+/* ── SETTINGS ── */
+function populateSettingsFields() {
+  const n = document.getElementById('emp-edit-name'); if (n) n.value = employerProfile.companyName;
+  const w = document.getElementById('emp-edit-website'); if (w) w.value = employerProfile.website;
+  const a = document.getElementById('emp-edit-about'); if (a) a.value = employerProfile.about;
+}
+
+function saveEmployerSettings() {
+  const n = document.getElementById('emp-edit-name')?.value.trim();
+  if (n) employerProfile.companyName = n;
+  const city = document.getElementById('emp-edit-city')?.value;
+  if (city) employerProfile.city = city;
+  const ind = document.getElementById('emp-edit-industry')?.value;
+  if (ind) employerProfile.industry = ind;
+  const w = document.getElementById('emp-edit-website')?.value.trim();
+  if (w) employerProfile.website = w;
+  const ab = document.getElementById('emp-edit-about')?.value.trim();
+  if (ab) employerProfile.about = ab;
+  renderEmpProfileHeader();
+  showToast(currentLang === 'ru' ? '✅ Настройки компании сохранены!' : '✅ Компания параметрлері сақталды!');
 }
 
 /* ══════════════════════════════════════════
