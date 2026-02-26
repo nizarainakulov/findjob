@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FindJob — Работа под твою личность</title>
+    <meta name="description" content="AI-платформа подбора работы по тесту личности MBTI для граждан Казахстана" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ══ NAVBAR ══ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo" onclick="navigateTo('home')">
+            <span class="logo-icon">⚡</span>
+            <span class="logo-text">FindJob</span>
+        </div>
+        <div class="nav-links" id="nav-links">
+            <a class="nav-link active" data-page="home" onclick="navigateTo('home')" data-t="navHome">Главная</a>
+            <a class="nav-link" data-page="resume" onclick="navigateTo('resume')" data-t="navResume">Резюме</a>
+            <a class="nav-link" data-page="courses" onclick="navigateTo('courses')" data-t="navCourses">Курсы</a>
+            <a class="nav-link" data-page="world" onclick="navigateTo('world')" data-t="navWorld">Мировая арена</a>
+            <a class="nav-link cta-link" data-page="quiz" onclick="navigateTo('quiz')" data-t="navQuiz">🧠 Анкета</a>
+        </div>
+        <div class="nav-right">
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+                <button class="lang-btn" onclick="setLang('kz')">KZ</button>
+            </div>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════════
+     PAGE 1 — ГЛАВНАЯ
+══════════════════════════════════════════ -->
+    <section id="page-home" class="page active">
+
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-bg-grid"></div>
+            <div class="hero-content">
+                <div class="hero-tag" data-t="heroTag">🇰🇿 Платформа для граждан Казахстана</div>
+                <h1 class="hero-title" data-t="heroTitle">Работа под<br><span class="gradient-text">твою личность</span>
+                </h1>
+                <p class="hero-sub" data-t="heroSub">Пройди тест личности MBTI и получи список вакансий, где именно ты —
+                    идеальный кандидат.</p>
+                <div class="hero-btns">
+                    <button class="btn btn-primary btn-lg" onclick="navigateTo('quiz')" data-t="heroCta1">Пройти
+                        тест</button>
+                    <button class="btn btn-outline btn-lg" onclick="navigateTo('resume')" data-t="heroCta2">Создать
+                        резюме</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat"><span class="hero-stat-val">16</span><span class="hero-stat-lbl"
+                            data-t="hstat1">типов личности</span></div>
+                    <div class="hero-stat-div"></div>
+                    <div class="hero-stat"><span class="hero-stat-val">159+</span><span class="hero-stat-lbl"
+                            data-t="hstat2">вакансий</span></div>
+                    <div class="hero-stat-div"></div>
+                    <div class="hero-stat"><span class="hero-stat-val">95%</span><span class="hero-stat-lbl"
+                            data-t="hstat3">точность матча</span></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="mbti-wheel">
+                    <div class="mbti-card" style="--c:#6366F1">INTJ</div>
+                    <div class="mbti-card" style="--c:#8B5CF6">ENFP</div>
+                    <div class="mbti-card" style="--c:#EC4899">ESFJ</div>
+                    <div class="mbti-card" style="--c:#10B981">ISTP</div>
+                    <div class="mbti-card" style="--c:#F59E0B">ESTJ</div>
+                    <div class="mbti-card" style="--c:#3B82F6">INFP</div>
+                    <div class="mbti-card" style="--c:#EF4444">ENTP</div>
+                    <div class="mbti-card" style="--c:#14B8A6">ISFJ</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="section-wrap">
+            <div class="section-label" data-t="howLabel">КАК ЭТО РАБОТАЕТ</div>
+            <h2 class="section-title" data-t="howTitle">Три шага до идеальной работы</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <div class="step-icon">🧠</div>
+                    <div class="step-title" data-t="step1t">Тест личности</div>
+                    <div class="step-desc" data-t="step1d">Проходишь 16 вопросов MBTI — узнаёшь свой тип личности и
+                        сильные стороны.</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <div class="step-icon">🎯</div>
+                    <div class="step-title" data-t="step2t">Матч с вакансиями</div>
+                    <div class="step-desc" data-t="step2d">Алгоритм сравнивает твой тип с требованиями работодателей и
+                        показывает процент совпадения.</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <div class="step-icon">🚀</div>
+                    <div class="step-title" data-t="step3t">Откликнуться</div>
+                    <div class="step-desc" data-t="step3d">Отправляешь резюме, созданное под твой тип личности, и
+                        получаешь приглашения на интервью.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personality types preview -->
+        <div class="section-wrap">
+            <div class="section-label" data-t="typesLabel">16 ТИПОВ ЛИЧНОСТИ</div>
+            <h2 class="section-title" data-t="typesTitle">Найди себя</h2>
+            <div class="types-grid" id="types-grid"></div>
+        </div>
+
+        <!-- For employers -->
+        <div class="section-wrap">
+            <div class="employer-banner">
+                <div>
+                    <div class="section-label" style="color:#A78BFA">ДЛЯ РАБОТОДАТЕЛЕЙ</div>
+                    <h2 class="section-title" style="margin:8px 0 12px" data-t="empBannerTitle">Найди сотрудника<br>с
+                        нужным характером</h2>
+                    <p style="color:var(--text-secondary);max-width:480px" data-t="empBannerDesc">Укажи желаемые черты
+                        личности — система подберёт кандидатов с максимальным совпадением по MBTI.</p>
+                    <button class="btn btn-primary btn-lg" style="margin-top:20px"
+                        onclick="navigateTo('quiz');setQuizMode('employer')" data-t="empBannerCta">Найти
+                        кандидатов</button>
+                </div>
+                <div class="employer-banner-visual">🏢<br><span
+                        style="font-size:14px;color:var(--text-secondary)">Kolesa · Kaspi · Air Astana</span></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo">⚡ FindJob</div>
+            <div class="footer-tagline" data-t="footerTag">Работа под твою личность · Казахстан 2025</div>
+            <div class="footer-links">
+                <a href="mailto:hello@findjob.kz">hello@findjob.kz</a>
+                <a href="#" onclick="return false">Telegram</a>
+                <a href="#" onclick="return false">Instagram</a>
+            </div>
+        </footer>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════
+     PAGE 2 — РЕЗЮМЕ
+══════════════════════════════════════════ -->
+    <section id="page-resume" class="page">
+        <div class="page-header-band">
+            <div class="section-label" data-t="navResume">РЕЗЮМЕ</div>
+            <h1 class="page-hero-title" data-t="resumeHeroTitle">Резюме под твой тип личности</h1>
+            <p class="page-hero-sub" data-t="resumeHeroSub">AI-помощник создаёт резюме с акцентом на твои сильные
+                стороны по MBTI</p>
+        </div>
+
+        <div class="section-wrap">
+            <div class="resume-layout">
+                <!-- Form -->
+                <div class="resume-form-col">
+                    <div class="card">
+                        <div class="card-title" data-t="resumePersonal">👤 Личные данные</div>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label class="input-label" data-t="rfName">Имя и фамилия</label>
+                                <input type="text" class="form-input" id="r-name" placeholder="Алихан Маратов" />
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="rfRole">Желаемая должность</label>
+                                <input type="text" class="form-input" id="r-role" placeholder="Frontend Developer" />
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Email</label>
+                                <input type="email" class="form-input" id="r-email" placeholder="name@example.com" />
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="rfPhone">Телефон</label>
+                                <input type="text" class="form-input" id="r-phone" placeholder="+7 777 000 0000" />
+                            </div>
+                            <div class="input-group" style="grid-column:1/-1">
+                                <label class="input-label" data-t="rfCity">Город</label>
+                                <input type="text" class="form-input" id="r-city" placeholder="Алматы" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title" data-t="resumeEdu">🎓 Образование</div>
+                        <div class="input-group">
+                            <label class="input-label" data-t="rfUni">Университет</label>
+                            <input type="text" class="form-input" id="r-uni" placeholder="КазНТУ им. Сатпаева" />
+                        </div>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label class="input-label" data-t="rfSpec">Специальность</label>
+                                <input type="text" class="form-input" id="r-spec"
+                                    placeholder="Информационные системы" />
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" data-t="rfYear">Год окончания</label>
+                                <input type="text" class="form-input" id="r-year" placeholder="2025" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title" data-t="resumeSkills">⚡ Навыки</div>
+                        <div class="input-group">
+                            <label class="input-label" data-t="rfSkillsHint">Через запятую</label>
+                            <input type="text" class="form-input" id="r-skills"
+                                placeholder="React, Python, SQL, Figma" />
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title" data-t="resumeAbout">📝 О себе</div>
+                        <div class="input-group">
+                            <textarea class="form-input" id="r-about" rows="4" style="resize:vertical"
+                                placeholder="Опишите себя в 2–3 предложениях…"></textarea>
+                        </div>
+                        <button class="btn btn-ghost btn-sm" onclick="aiImproveResume()">✨ Улучшить с AI</button>
+                    </div>
+
+                    <div class="resume-export-btns">
+                        <button class="btn btn-primary" onclick="exportResumePDF()">📄 Скачать PDF</button>
+                        <button class="btn btn-outline" onclick="exportResumeDoc()">📝 Word .doc</button>
+                        <button class="btn btn-outline" onclick="exportResumeExcel()">📊 Excel</button>
+                    </div>
+                </div>
+
+                <!-- Preview -->
+                <div class="resume-preview-col">
+                    <div class="card" id="resume-preview">
+                        <div class="resume-preview-header">
+                            <div class="resume-avatar" id="prev-initials">АМ</div>
+                            <div>
+                                <div class="resume-preview-name" id="prev-name">Ваше имя</div>
+                                <div class="resume-preview-role" id="prev-role">Должность</div>
+                                <div class="resume-preview-meta" id="prev-meta">📍 Алматы · 📧 email · 📞 телефон</div>
+                            </div>
+                        </div>
+                        <div class="resume-preview-section">
+                            <div class="resume-section-title" data-t="resumeAbout">О себе</div>
+                            <div id="prev-about" style="color:var(--text-secondary);font-size:13px">Здесь появится ваш
+                                текст о себе</div>
+                        </div>
+                        <div class="resume-preview-section">
+                            <div class="resume-section-title" data-t="resumeSkills">Навыки</div>
+                            <div id="prev-skills" class="chips-row" style="flex-wrap:wrap;gap:6px"></div>
+                        </div>
+                        <div class="resume-preview-section">
+                            <div class="resume-section-title" data-t="resumeEdu">Образование</div>
+                            <div id="prev-edu" style="color:var(--text-secondary);font-size:13px">Университет ·
+                                Специальность · Год</div>
+                        </div>
+                        <div id="prev-mbti-block" class="mbti-type-inline hidden">
+                            <div class="resume-section-title">Тип личности MBTI</div>
+                            <div id="prev-mbti-type" class="mbti-type-badge-sm"></div>
+                        </div>
+                    </div>
+
+                    <!-- Gemini AI Chat -->
+                    <div class="card" style="margin-top:16px">
+                        <div class="card-title">✨ AI-помощник (Gemini)</div>
+                        <div class="ai-chat-messages" id="resume-ai-msgs">
+                            <div class="ai-msg ai-msg-bot">Привет! Я помогу улучшить твоё резюме. Задай вопрос или нажми
+                                "Улучшить с AI".</div>
+                        </div>
+                        <div class="ai-input-row">
+                            <input type="text" class="form-input" id="resume-ai-input"
+                                placeholder="Как улучшить моё резюме?"
+                                onkeydown="if(event.key==='Enter')sendResumeAI()" />
+                            <button class="btn btn-primary btn-sm" onclick="sendResumeAI()">→</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+     PAGE 3 — КУРСЫ
+══════════════════════════════════════════ -->
+    <section id="page-courses" class="page">
+        <div class="page-header-band">
+            <div class="section-label" data-t="navCourses">КУРСЫ</div>
+            <h1 class="page-hero-title" data-t="coursesHeroTitle">Прокачай себя</h1>
+            <p class="page-hero-sub" data-t="coursesHeroSub">Бесплатные, платные и государственные курсы для роста в
+                Казахстане</p>
+        </div>
+
+        <div class="section-wrap">
+            <!-- Filter -->
+            <div class="courses-filter">
+                <button class="filter-btn active" onclick="filterCourses('all')" data-t="coursesAll">Все</button>
+                <button class="filter-btn" onclick="filterCourses('free')" data-t="coursesFree">🆓 Бесплатные</button>
+                <button class="filter-btn" onclick="filterCourses('paid')" data-t="coursesPaid">💰 Платные</button>
+                <button class="filter-btn" onclick="filterCourses('state')" data-t="coursesState">🏛️
+                    Государственные</button>
+            </div>
+            <div class="courses-cols" id="courses-container"></div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+     PAGE 4 — МИРОВАЯ АРЕНА
+══════════════════════════════════════════ -->
+    <section id="page-world" class="page">
+        <div class="page-header-band">
+            <div class="section-label" data-t="navWorld">МИРОВАЯ АРЕНА</div>
+            <h1 class="page-hero-title" data-t="worldHeroTitle">Работай на международном уровне</h1>
+            <p class="page-hero-sub" data-t="worldHeroSub">Стратегия сотрудничества с иностранными компаниями для
+                граждан Казахстана</p>
+        </div>
+
+        <div class="section-wrap">
+            <div class="world-grid" id="world-grid"></div>
+
+            <div class="world-strategy">
+                <div class="section-label" style="color:#10B981" data-t="stratLabel">СТРАТЕГИЯ</div>
+                <h2 class="section-title" data-t="stratTitle">Как выйти на международный рынок</h2>
+                <div class="strategy-steps">
+                    <div class="strategy-step">
+                        <div class="strategy-num">01</div>
+                        <div>
+                            <div class="strategy-title" data-t="strat1t">Определи тип личности</div>
+                            <div class="strategy-desc" data-t="strat1d">Пройди MBTI — иностранные HR активно используют
+                                его при найме.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-step">
+                        <div class="strategy-num">02</div>
+                        <div>
+                            <div class="strategy-title" data-t="strat2t">Подтверди квалификацию</div>
+                            <div class="strategy-desc" data-t="strat2d">Международные сертификаты (AWS, Google, CFA)
+                                открывают двери в 50+ стран.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-step">
+                        <div class="strategy-num">03</div>
+                        <div>
+                            <div class="strategy-title" data-t="strat3t">Оформи визу / релокацию</div>
+                            <div class="strategy-desc" data-t="strat3d">Казахстан имеет соглашения о безвизовом въезде с
+                                70+ странами.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-step">
+                        <div class="strategy-num">04</div>
+                        <div>
+                            <div class="strategy-title" data-t="strat4t">Откликнись через FindJob</div>
+                            <div class="strategy-desc" data-t="strat4d">Твой MBTI-профиль и резюме уже готовы — просто
+                                нажми "Откликнуться".</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+     PAGE 5 — АНКЕТА (MBTI TEST)
+══════════════════════════════════════════ -->
+    <section id="page-quiz" class="page">
+
+        <!-- Mode selector -->
+        <div id="quiz-mode-select" class="quiz-mode-wrap">
+            <div class="page-header-band">
+                <div class="section-label" data-t="navQuiz">АНКЕТА</div>
+                <h1 class="page-hero-title" data-t="quizHeroTitle">Кто ты?</h1>
+                <p class="page-hero-sub" data-t="quizHeroSub">Выбери режим и получи персональный подбор вакансий</p>
+            </div>
+            <div class="section-wrap">
+                <div class="quiz-mode-cards">
+                    <div class="quiz-mode-card" onclick="setQuizMode('worker')">
+                        <div class="quiz-mode-icon">🧑‍💼</div>
+                        <div class="quiz-mode-title" data-t="modeWorker">Я ищу работу</div>
+                        <div class="quiz-mode-desc" data-t="modeWorkerDesc">Пройди тест MBTI → узнай свой тип → получи
+                            вакансии, где ты идеален</div>
+                        <div class="btn btn-primary" style="margin-top:20px" data-t="modeWorkerBtn">Начать тест</div>
+                    </div>
+                    <div class="quiz-mode-card" onclick="setQuizMode('employer')">
+                        <div class="quiz-mode-icon">🏢</div>
+                        <div class="quiz-mode-title" data-t="modeEmployer">Я ищу сотрудника</div>
+                        <div class="quiz-mode-desc" data-t="modeEmployerDesc">Укажи желаемые черты личности → получи
+                            список подходящих кандидатов</div>
+                        <div class="btn btn-outline" style="margin-top:20px" data-t="modeEmployerBtn">Подобрать</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKER: MBTI Test -->
+        <div id="quiz-worker" class="hidden">
+            <div class="test-wrap">
+                <!-- Progress -->
+                <div class="test-progress-bar">
+                    <div class="test-progress-fill" id="quiz-progress-fill" style="width:0%"></div>
+                </div>
+                <div class="test-progress-label">
+                    <span id="quiz-q-num">Вопрос 1 из 16</span>
+                    <span id="quiz-dim-label" class="quiz-dim-chip">E vs I</span>
+                </div>
+
+                <!-- Question card -->
+                <div class="test-question-card" id="quiz-question-card">
+                    <div class="test-question-text" id="quiz-q-text"></div>
+                    <div class="test-options" id="quiz-options"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKER: Result -->
+        <div id="quiz-result" class="hidden">
+            <div class="section-wrap">
+                <div class="result-header">
+                    <div class="result-type-badge" id="result-type-badge"></div>
+                    <h2 class="result-type-name" id="result-type-name"></h2>
+                    <p class="result-type-desc" id="result-type-desc"></p>
+                    <div class="result-traits" id="result-traits"></div>
+                </div>
+                <div class="result-dimensions">
+                    <div class="dim-bar-row" id="dim-ei"></div>
+                    <div class="dim-bar-row" id="dim-sn"></div>
+                    <div class="dim-bar-row" id="dim-tf"></div>
+                    <div class="dim-bar-row" id="dim-jp"></div>
+                </div>
+                <div class="section-label" style="margin-top:40px" data-t="matchedVac">ПОДХОДЯЩИЕ ВАКАНСИИ</div>
+                <div id="result-vacancies"></div>
+                <div style="text-align:center;margin-top:24px">
+                    <button class="btn btn-outline" onclick="restartQuiz()" data-t="retakeBtn">Пройти заново</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- EMPLOYER: Trait picker -->
+        <div id="quiz-employer" class="hidden">
+            <div class="section-wrap">
+                <div class="page-header-band" style="margin-bottom:32px">
+                    <div class="section-label" data-t="modeEmployer">РАБОТОДАТЕЛЬ</div>
+                    <h2 class="page-hero-title" style="font-size:32px" data-t="empPickTitle">Какой характер нужен
+                        сотруднику?</h2>
+                </div>
+                <div class="employer-traits-grid">
+                    <div class="trait-picker-card">
+                        <div class="trait-label">Энергия <span class="trait-ei" id="emp-ei-label">Нет
+                                предпочтений</span></div>
+                        <div class="trait-desc">Экстраверт (E) общителен и активен. Интроверт (I) — вдумчив и
+                            сосредоточен.</div>
+                        <div class="trait-slider-row">
+                            <span class="trait-pole">E</span>
+                            <input type="range" id="emp-ei" min="0" max="100" value="50" class="trait-slider"
+                                oninput="updateEmpTraits()" />
+                            <span class="trait-pole">I</span>
+                        </div>
+                    </div>
+                    <div class="trait-picker-card">
+                        <div class="trait-label">Восприятие <span class="trait-ei" id="emp-sn-label">Нет
+                                предпочтений</span></div>
+                        <div class="trait-desc">Сенсорик (S) — практичен, ориентирован на факты. Интуит (N) — видит big
+                            picture.</div>
+                        <div class="trait-slider-row">
+                            <span class="trait-pole">S</span>
+                            <input type="range" id="emp-sn" min="0" max="100" value="50" class="trait-slider"
+                                oninput="updateEmpTraits()" />
+                            <span class="trait-pole">N</span>
+                        </div>
+                    </div>
+                    <div class="trait-picker-card">
+                        <div class="trait-label">Решения <span class="trait-ei" id="emp-tf-label">Нет
+                                предпочтений</span></div>
+                        <div class="trait-desc">Логик (T) — объективен, аналитичен. Этик (F) — ориентирован на людей и
+                            ценности.</div>
+                        <div class="trait-slider-row">
+                            <span class="trait-pole">T</span>
+                            <input type="range" id="emp-tf" min="0" max="100" value="50" class="trait-slider"
+                                oninput="updateEmpTraits()" />
+                            <span class="trait-pole">F</span>
+                        </div>
+                    </div>
+                    <div class="trait-picker-card">
+                        <div class="trait-label">Образ жизни <span class="trait-ei" id="emp-jp-label">Нет
+                                предпочтений</span></div>
+                        <div class="trait-desc">Рационал (J) — планирует и структурирует. Иррационал (P) — гибок и
+                            открыт новому.</div>
+                        <div class="trait-slider-row">
+                            <span class="trait-pole">J</span>
+                            <input type="range" id="emp-jp" min="0" max="100" value="50" class="trait-slider"
+                                oninput="updateEmpTraits()" />
+                            <span class="trait-pole">P</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin:24px 0">
+                    <div id="emp-selected-types" class="chips-row"
+                        style="justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:16px"></div>
+                    <button class="btn btn-primary btn-lg" onclick="runEmployerMatch()" data-t="findCandidates">🎯 Найти
+                        кандидатов</button>
+                </div>
+                <div id="employer-match-result" class="hidden">
+                    <div class="section-label" data-t="matchedCand">ПОДХОДЯЩИЕ КАНДИДАТЫ</div>
+                    <div id="employer-candidates-list"></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
